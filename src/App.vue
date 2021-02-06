@@ -1,7 +1,11 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link v-bind:to="{ name: 'Home' }">Home</router-link> |
+    <router-link :to="{ name: 'About'}">About</router-link> |
+    <router-link :to="{ name: 'MyGraphs'}">My Graphs</router-link> |
+    <router-link :to="{ name: 'MyAccount'}">My Account</router-link> | 
+    <router-link :to="{ name: 'Registration'}">Registration</router-link> |
+    <router-link :to="{ name: 'Login'}">Login</router-link>
   </div>
   <router-view/>
 </template>
