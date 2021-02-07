@@ -35,6 +35,12 @@ const routes = [
     path: '/my_graphs',
     name: 'MyGraphs',
     component: () => import('@/views/MyGraphs.vue')
+  },
+
+  {
+    path: '/contact_us',
+    name: 'ContactUs',
+    component: () => import('@/views/ContactUs.vue')
   }
   
 ]
