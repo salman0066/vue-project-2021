@@ -9,24 +9,56 @@
     
     <div class = "profile">
       <div>Your Details are as Below. If you wish to change them please fill the change of details form</div>
-<div><b>Email:</b></div>
-<div><b>Username :</b> </div>
-<div><b>Name :</b></div>
-<div><b>Institution:</b></div>
-<div><b>Address:</b></div>
-<div> <b>Contact Detail: </b></div>
+<div>Username : </div>
+<div>Name :</div>
+<div>Institution:</div>
+<div>Address:</div>
+<div>Contact Detail: </div>
 </div>
 <b>
 <div><h1 class = "change">Change of Detail Form</h1></div>
   </b>
 <div class="edit">To edit your details please fill out the form below</div>
-    <div class= "editForm"><div><b>Email:</b></div>
-<div><b>Username :</b> </div>
-<div><b>Name :</b></div>
-<div><b>Institution:</b></div>
-<div><b>Address:</b></div>
-<div> <b>Contact Detail: </b></div>
+<form >
+  <div class= "editForm">
+    
+
+
+  <label>Username:</label>
+  <input  type="text" placeholder="Enter your username" required> 
+
+
+
+  <label>Full Name:</label>
+  <input  type="text" placeholder="Enter your full name" required>
+
+
+
+
+
+
+  <label>Institution:</label>
+  <input type="text" placeholder="Enter your institution name" required>
+
+
+
+
+  <label>Address:</label>
+  <input type="text" placeholder="Enter your address" required>
+
+
+
+
+  <label>Contact Details:</label>
+  <input type= "int" placeholder="Enter Contact Details">
+
+<button type="submit">Submit</button>
+
+
 </div>
+
+</form>
+    
   </body>
 </template>
 
@@ -62,5 +94,32 @@ export default {
   text-align: left;
   font-size: 25px;
 }
+.editForm {   
+        padding: 25px;   
+        background-color: lightblue;  
+    }
+     form {   
+        border: 3px solid white;   
+    }   
+     button:hover {   
+        opacity: 0.9;   
+    }  
+    button {   
+       background-color:red;   
+       width: 100%;  
+        color: white;   
+        padding: 15px;   
+        margin: 10px 0px;   
+        border: none;   
+        cursor: pointer;   
+         }   
+input[type=text],input[type=int], input[type=password] {   
+        width: 100%;   
+        margin: 8px 0;  
+        padding: 12px 20px;   
+        display: inline-block;   
+        border: 2px solid red;   
+        box-sizing: border-box;   
+    }  
 
 </style>

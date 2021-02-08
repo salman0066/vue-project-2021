@@ -1,15 +1,23 @@
 <template>
-  <div id="nav">
-    <router-link v-bind:to="{ name: 'Home' }">Home</router-link> |
-    <router-link :to="{ name: 'About'}">About</router-link> |
-    <router-link :to="{ name: 'MyGraphs'}">My Graphs</router-link> |
-    <router-link :to="{ name: 'MyAccount'}">My Account</router-link> | 
-    <router-link :to="{ name: 'Registration'}">Registration</router-link> |
-    <router-link :to="{ name: 'Login'}">Login</router-link>
-  </div>
-  <router-view/>
-</template>
 
+  <div class="layout">
+    <appHeader></appHeader>
+    <appFooter></appFooter>
+  </div>
+
+</template>
+<script>
+// @ is an alias to /src
+import footer from '@/components/footer.vue'
+import header from '@/components/header.vue'
+
+export default {
+  components: {
+    appFooter: footer,
+    appHeader: header
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -18,14 +26,8 @@
   text-align: center;
   color: #2c3e50;
 }
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.layout {
+  justify-content: space-between;
 }
 
 #nav a.router-link-exact-active {
