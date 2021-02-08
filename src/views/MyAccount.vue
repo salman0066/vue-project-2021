@@ -22,45 +22,42 @@
 <div class="edit">To edit your details please fill out the form below</div>
 <form >
   <div class= "editForm">
-    <div><label>Email</label>
-    <input required type="email" placeholder="email">
-    </div>
-<div>
-
-  <label>Username</label>
-  <input required type="userName" placeholder="username"> </div>
-
+    
 
 <div>
-  <label>First Name</label>
-  <input required type="firstName" placeholder="first name">
+  <label>Username:</label>
+  <input  type="text" placeholder="Enter your username" required> 
 </div>
+
 <div>
-  <label>Last Name</label>
-  <input placeholder="last name">
+  <label>Full Name:</label>
+  <input  type="text" placeholder="Enter your full name" required>
 </div>
 
 
+
+
 <div>
-  <label>Institution</label>
-  <input placeholder="institution">
+  <label>Institution:</label>
+  <input type="text" placeholder="Enter your institution name" required>
 </div>
 
 
 <div>
-  <label>Address</label>
-  <input placeholder="address">
+  <label>Address:</label>
+  <input type="text" placeholder="Enter your address" required>
 </div>
 
 
-<div> 
-  <label>Contact Details</label>
-  <input placeholder="Contact Details">
+<div>
+  <label>Contact Details:</label>
+  <input type= "int" placeholder="Enter Contact Details">
 </div>
+<button type="submit">Submit</button>
 
 
 </div>
-<input class="submitBtn" type="submit" value="Submit">
+
 </form>
     
   </body>
@@ -98,8 +95,32 @@ export default {
   text-align: left;
   font-size: 25px;
 }
-.submitBtn{
-  place-content: left;
-}
+.editForm {   
+        padding: 25px;   
+        background-color: white;  
+    }
+     form {   
+        border: 3px solid #f1f1f1;   
+    }   
+     button:hover {   
+        opacity: 0.9;   
+    }  
+    button {   
+       background-color:black;   
+       width: 100%;  
+        color: white;   
+        padding: 15px;   
+        margin: 10px 0px;   
+        border: none;   
+        cursor: pointer;   
+         }   
+input[type=text],input[type=int], input[type=password] {   
+        width: 40%;   
+        margin: 8px 0;  
+        padding: 12px 20px;   
+        display: inline-block;   
+        border: 2px solid black;   
+        box-sizing: border-box;   
+    }  
 
 </style>
