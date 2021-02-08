@@ -31,4 +31,16 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.el-button{
+    width:80%;
+    height:auto;
+    margin:50px auto 0;
+    position:relative;
+    padding:16px;
+    background-color:#ffff;
+    border-radius:2px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.3);
+    box-sizing:border-box;
+}
 </style>
