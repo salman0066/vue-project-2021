@@ -9,7 +9,6 @@
     
     <div class = "profile">
       <div>Your Details are as Below. If you wish to change them please fill the change of details form</div>
-<div>Email:</div>
 <div>Username : </div>
 <div>Name :</div>
 <div>Institution:</div>
@@ -97,16 +96,16 @@ export default {
 }
 .editForm {   
         padding: 25px;   
-        background-color: white;  
+        background-color: lightblue;  
     }
      form {   
-        border: 3px solid #f1f1f1;   
+        border: 3px solid white;   
     }   
      button:hover {   
         opacity: 0.9;   
     }  
     button {   
-       background-color:black;   
+       background-color:red;   
        width: 100%;  
         color: white;   
         padding: 15px;   
@@ -115,11 +114,11 @@ export default {
         cursor: pointer;   
          }   
 input[type=text],input[type=int], input[type=password] {   
-        width: 40%;   
+        width: 100%;   
         margin: 8px 0;  
         padding: 12px 20px;   
         display: inline-block;   
-        border: 2px solid black;   
+        border: 2px solid red;   
         box-sizing: border-box;   
     }  
 
