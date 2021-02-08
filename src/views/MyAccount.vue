@@ -23,35 +23,35 @@
   <div class= "editForm">
     
 
-<div>
+
   <label>Username:</label>
   <input  type="text" placeholder="Enter your username" required> 
-</div>
 
-<div>
+
+
   <label>Full Name:</label>
   <input  type="text" placeholder="Enter your full name" required>
-</div>
 
 
 
 
-<div>
+
+
   <label>Institution:</label>
   <input type="text" placeholder="Enter your institution name" required>
-</div>
 
 
-<div>
+
+
   <label>Address:</label>
   <input type="text" placeholder="Enter your address" required>
-</div>
 
 
-<div>
+
+
   <label>Contact Details:</label>
   <input type= "int" placeholder="Enter Contact Details">
-</div>
+
 <button type="submit">Submit</button>
 
 
