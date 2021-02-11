@@ -9,6 +9,7 @@
     <router-link style="float:right" :to="{ name: 'MyAccount'}"> My Account | </router-link> 
     <router-link style="float:left" :to="{ name: 'Registration'}">Registration | </router-link> 
     <router-link style="float:left" :to="{ name: 'Login'}">Login</router-link>
+    <router-link style="float:left" :to="{ name: 'UploadData'}"> | Add Data</router-link>
   </div>
 
 
