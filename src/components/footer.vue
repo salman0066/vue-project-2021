@@ -3,7 +3,7 @@
     <footer id="footer">
         <router-link :to="{ name: 'About'}">About Us | </router-link> 
         <router-link :to="{ name: 'ContactUs'}">Contact Us</router-link> 
-        <p><a href="">Check the app out on GitHub</a></p>
+        <p><a href="https://github.com/AWD-Group-6/vue-project-2021">Check the app out on GitHub</a></p>
   </footer>
   </div>
 </template>
