@@ -84,42 +84,27 @@ export default {
 .header{
   text-align: left;
 }
-.edit{
-  text-align: left;
-}
-.editForm{
-  text-align: left;
-}
 .change{
-  text-align: left;
+  text-align: center;
   font-size: 25px;
 }
-.editForm {   
-        padding: 25px;   
-        background-color: lightblue;  
-    }
-     form {   
-        border: 3px solid white;   
-    }   
-     button:hover {   
+button:hover {   
         opacity: 0.9;   
     }  
-    button {   
-       background-color:red;   
-       width: 100%;  
+button {   
+  display: inline-block;
+       background-color:black;   
+       width: 50%;  
         color: white;   
         padding: 15px;   
-        margin: 10px 0px;   
-        border: none;   
+        margin: 10px 0px;     
         cursor: pointer;   
          }   
 input[type=text],input[type=int], input[type=password] {   
         width: 100%;   
         margin: 8px 0;  
-        padding: 12px 20px;   
-        display: inline-block;   
-        border: 2px solid red;   
-        box-sizing: border-box;   
+        padding: 12px 20px;  
+        align-items: center; 
+        display: inline-block;     
     }  
-
 </style>
