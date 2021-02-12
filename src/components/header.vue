@@ -5,11 +5,11 @@
 </div>
 
   <div id="nav">
-    <router-link style="float:left" v-bind:to="{ name: 'Home' }"> Home | </router-link> 
-    <router-link style="float:right" :to="{ name: 'MyGraphs'}"> My Graphs | </router-link> 
-    <router-link style="float:right" :to="{ name: 'MyAccount'}"> My Account | </router-link> 
-    <router-link style="float:left" :to="{ name: 'Registration'}"> Registration | </router-link> 
-    <router-link style="float:left" :to="{ name: 'Login'}"> Login</router-link>
+    <router-link style="float:left" v-bind:to="{ name: 'Home' }">Home|</router-link> 
+    <router-link style="float:right" :to="{ name: 'MyGraphs'}">My Graphs</router-link> 
+    <router-link style="float:right" :to="{ name: 'MyAccount'}">My Account|</router-link> 
+    <router-link style="float:left" :to="{ name: 'Registration'}">Registration|</router-link> 
+    <router-link style="float:left" :to="{ name: 'Login'}">Login</router-link>
   </div>
 
   <router-view/>
