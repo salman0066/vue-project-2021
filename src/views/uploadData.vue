@@ -4,19 +4,19 @@
   <el-form label-width="120px">
     
       <el-form-item label="Title">
-        <el-input type="text" v-model="title" placeholder="Enter title" autocomplete="off" required></el-input>
+        <el-input v-model="title" placeholder="Enter title" autocomplete="off" required></el-input>
       </el-form-item>
 
       <el-form-item label="Description">
-        <el-input type=" text" v-model="description" placeholder="Enter description" autocomplete="off" required></el-input>
+        <el-input  v-model="description" placeholder="Enter description" autocomplete="off" required></el-input>
       </el-form-item>
 
       <el-form-item label="Content">
-        <el-input type="text" v-model="content" placeholder="Enter content" autocomplete="off" required></el-input>
+        <el-input v-model="content" placeholder="Enter content" autocomplete="off" required></el-input>
       </el-form-item>
 
       <el-form-item label="Tags">
-        <el-input type="text" v-model="tags" placeholder="Enter tags" autocomplete="off" required></el-input>
+        <el-input  v-model="tags" placeholder="Enter tags" autocomplete="off" required></el-input>
       </el-form-item>
       
       <el-form-item>
@@ -28,7 +28,7 @@
 
 <script>
 
- import {ref} from 'vue';
+import {ref} from 'vue';
 
 export default {
   setup(){

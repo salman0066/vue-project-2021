@@ -16,59 +16,42 @@
 <div>Contact Detail: </div>
 </div>
 <b>
-<div><h1 class = "change">Change of Detail Form</h1></div>
+<div><h1>Change of Detail Form</h1></div>
   </b>
-<div class="edit">To edit your details please fill out the form below</div>
-<form >
-  <div class= "editForm">
-    
-
-
-  <label>Username:</label>
-  <input  type="text" placeholder="Enter your username" required> 
-
-
-
-  <label>Full Name:</label>
-  <input  type="text" placeholder="Enter your full name" required>
-
-
-
-
-
-
-  <label>Institution:</label>
-  <input type="text" placeholder="Enter your institution name" required>
-
-
-
-
-  <label>Address:</label>
-  <input type="text" placeholder="Enter your address" required>
-
-
-
-
-  <label>Contact Details:</label>
-  <input type= "int" placeholder="Enter Contact Details">
-
-<button type="submit">Submit</button>
-
-
-</div>
-
-</form>
-    
+<div>To edit your details please fill out the form below</div>
+<el-form >
+      <el-form-item label="Username">
+        <el-input v-model="username" placeholder="Enter username" autocomplete="off" required></el-input>
+      </el-form-item>
+      <el-form-item label="Name">
+        <el-input v-model="title" placeholder="name" autocomplete="off" required></el-input>
+      </el-form-item>
+        <el-form-item label="Institution">
+        <el-input v-model="institution" placeholder="Enter title" autocomplete="off" required></el-input>
+      </el-form-item>
+        <el-form-item label="Address">
+        <el-input v-model="address" placeholder="Enter title" autocomplete="off" required></el-input>
+      </el-form-item>
+        <el-form-item label="Contact Details">
+        <el-input v-model="contact_details" placeholder="Enter title" autocomplete="off" required></el-input>
+      </el-form-item>
+<el-button>Update Details</el-button>
+    </el-form>
   </body>
 </template>
 
 <script>
 
-// import {ref} from 'vue';
+import {ref} from 'vue';
 
 export default {
   setup(){
-
+    const username = ref("");
+    const name = ref("")
+    const institution = ref("")
+    const address = ref("")
+    const contact_details= ref("")
+    return {username, name, institution, address, contact_details}
   }
 }
 </script>
@@ -84,10 +67,7 @@ export default {
 .header{
   text-align: left;
 }
-.change{
-  text-align: center;
-  font-size: 25px;
-}
+
 button:hover {   
         opacity: 0.9;   
     }  
@@ -100,11 +80,5 @@ button {
         margin: 10px 0px;     
         cursor: pointer;   
          }   
-input[type=text],input[type=int], input[type=password] {   
-        width: 100%;   
-        margin: 8px 0;  
-        padding: 12px 20px;  
-        align-items: center; 
-        display: inline-block;     
-    }  
+
 </style>
