@@ -1,31 +1,39 @@
 <template>
-  <el-form ref="form" label-width="auto">
-    <!-- Username field -->
-    <el-form-item label="Username: ">
-      <el-input 
-      type="text"
-      placeholder="Input username"
-      required
-      autocomplete="off"
-      v-model="username"
-      ></el-input>
-    </el-form-item>
+  <el-row>
+    <el-col :span="11" class="mainContent">
+      <el-form ref="form" label-width="auto">
+        <h2>Login</h2>
 
-    <!-- Password field -->
-    <el-form-item label="Password: ">
-      <el-input 
-      type="password"
-      placeholder="Input password"
-      required
-      autocomplete="off"
-      v-model="password"
-      ></el-input>
-    </el-form-item>
+        <!-- Username field -->
+        <el-form-item label="Username: ">
+          <el-input 
+          type="text"
+          placeholder="Input username"
+          required
+          autocomplete="off"
+          v-model="username"
+          ></el-input>
+        </el-form-item>
 
-    <el-form-item>
-      <el-button type="success" @click="login">Login</el-button>
-    </el-form-item>
-  </el-form>
+        <!-- Password field -->
+        <el-form-item label="Password: ">
+          <el-input 
+          type="password"
+          placeholder="Input password"
+          required
+          autocomplete="off"
+          v-model="password"
+          ></el-input>
+        </el-form-item>
+
+        <el-form-item>
+          <el-button type="primary" @click="login">Login</el-button>
+        </el-form-item>
+      </el-form>
+    </el-col>
+  </el-row>
+   
+
 </template>
 
 <script>

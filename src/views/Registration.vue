@@ -29,7 +29,7 @@
       <el-form-item label="** Password Confirmation: ">
         <el-input 
         type="password"
-        placeholder="...Type password again"
+        placeholder="...re-type password again"
         required
         autocomplete="off"
         v-model="password"
@@ -51,7 +51,7 @@
       <el-form-item label="** Institution(s): ">
         <el-input 
         type="text"
-        placeholder="...your institution"
+        placeholder="...research/education organisations etc"
         required
         autocomplete="off"
         v-model="institution"
@@ -62,7 +62,7 @@
       <el-form-item label="Address: ">
         <el-input 
         type="text"
-        placeholder="...full name(s)"
+        placeholder="...any level of detail appreciated"
         autocomplete="off"
         v-model="fullName"
         ></el-input>
@@ -79,9 +79,11 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="success" @click="register">Register</el-button>
+        <el-row>
+      <el-col :span="14">
+        <el-button type="primary" @click="register">Register</el-button>
+      </el-col></el-row>
       </el-form-item>
-
       <div id="message">
         {{fullName}}
       </div>
@@ -123,5 +125,40 @@ export default {
   margin:auto;
 
 }
+
+button {   
+       background-color: #C1272D;   
+       width: 100%;  
+        color: white;   
+        padding: 15px;   
+        margin: 10px 0px;   
+        border: none;   
+        cursor: pointer;   
+         }   
+ form {   
+        border: 3px solid #f1f1f1;   
+    }   
+ input[type=text], input[type=password] {   
+        width: 100%;   
+        margin: 8px 0;  
+        padding: 12px 20px;   
+        display: inline-block;   
+        border: 2px solid #C1272D;   
+        box-sizing: border-box;   
+    }  
+ button:hover {   
+        opacity: 0.7;   
+    }   
+  .cancelbtn {   
+        width: auto;   
+        padding: 10px 18px;  
+        margin: 10px 5px;  
+    }   
+        
+     
+ .container {   
+        padding: 25px;   
+        background-color: lightblue;  
+    }
 
 </style>
