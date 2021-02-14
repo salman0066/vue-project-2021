@@ -4,10 +4,21 @@
     <el-form ref="form" label-width="auto">
       <h2>Register</h2>
       <!-- Username field -->
+      <el-form-item label="** Email: ">
+        <el-input 
+        type="text"
+        placeholder="Enter your email"
+        required
+        autocomplete="off"
+        v-model="email"
+        ></el-input>
+      </el-form-item>
+
+      <!-- Email field -->
       <el-form-item label="** Username: ">
         <el-input 
         type="text"
-        placeholder="Create username"
+        placeholder="Create a username"
         required
         autocomplete="off"
         v-model="username"
@@ -32,7 +43,7 @@
         placeholder="...re-type password again"
         required
         autocomplete="off"
-        v-model="password"
+        v-model="passwordConfirmation"
         ></el-input>
       </el-form-item>
 
@@ -64,7 +75,7 @@
         type="text"
         placeholder="...any level of detail appreciated"
         autocomplete="off"
-        v-model="fullName"
+        v-model="address"
         ></el-input>
       </el-form-item>
 
@@ -78,25 +89,39 @@
         ></el-input>
       </el-form-item>
 
+      <div v-if="errorRegistration">
+        <el-button plain type="danger" disabled icon="el-icon-error">
+          {{ errorRegistration }}
+        </el-button>
+      </div>
+
       <el-form-item>
         <el-row>
       <el-col :span="14">
         <el-button type="primary" @click="register">Register</el-button>
       </el-col></el-row>
       </el-form-item>
-      <div id="message">
+
+      <!-- <div id="message">
         {{fullName}}
-      </div>
+      </div> -->
       
     </el-form>
   </el-col></el-row>
 </template>
 
 <script>
-import {ref} from 'vue';
+import {ref, watch } from "vue";
+import { useRouter } from "vue-router";
+import { firebaseAuthentication } from "@/firebase/database";
+
 export default {
-  name: 'Login',
+  name: "register",
+  emits: ["register-clicked"],
+
+
   setup(){
+      const email = ref("");
       const username = ref("");
       const password = ref("");
       const passwordConfirmation = ref("");
@@ -104,21 +129,65 @@ export default {
       const institution = ref("");
       const address = ref("");
       const phoneNumber = ref("");
+      const errorRegistration = ref("");
 
-      function detailsToString(username, password, passwordConfirmation, fullName, institution, address, phoneNumber){
-          return "Username: ", username, 
-          "Password: ", password, 
-          "PW Confiramtion: ", passwordConfirmation, 
-          "Name: ", fullName, 
-          "Institution: ", institution, 
-          "Address: ", address, 
-          "Number: ", phoneNumber, ".";
+      watch(passwordConfirmation, () => {
+        if (
+          password.value !== "" &&
+          passwordConfirmation.value !== "" &&
+          password.value !== passwordConfirmation.value
+        ) {
+          errorRegistration.value = "Passwords do not match!, please try again.";
+        } else {
+          errorRegistration.value = null;
+        }
+      });
+
+      const router = useRouter();
+
+      function register() {
+        const info = {
+          email: email.value,
+          password: password.value,
+          fullName: fullName.value,
+        };
+
+        if (!errorRegistration.value){
+          firebaseAuthentication
+          .createUserWithEmailAndPassword(info.email, info.password)
+          .then(
+            (userCredentials) => {
+              return userCredentials.user
+                .updateProfile({
+                  fullName: info.Fullname,
+                })
+                .then(() => {
+                  router.replace("register");
+                });
+            },
+            (error) => {
+              errorRegistration.value = error.message;
+            }
+          );
+        }
       }
+      return {
+        email,
+        username,
+        password,
+        passwordConfirmation,
+        fullName,
+        institution,
+        address,
+        phoneNumber,
+        errorRegistration,
+        register
 
-      return {detailsToString, username, password, passwordConfirmation, fullName, institution, address, phoneNumber}
+      }; 
+     } 
   }
 
-}
+
 </script>
 <style scoped>
 .mainContent{

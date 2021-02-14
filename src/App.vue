@@ -12,13 +12,36 @@
 // @ is an alias to /src
 import footer from '@/components/footer.vue'
 import header from '@/components/header.vue'
+import { ref } from "vue";
+import {
+  firebaseAuthentication,
+  // firebaseFireStore,
+  // timestamp,
+} from "@/firebase/database";
+// import { useRouter } from "vue-router";
 
 export default {
   components: {
     appFooter: footer,
     appHeader: header
-  }
-}
+  },
+  setup() {
+  const user = ref(null);
+    
+
+
+    firebaseAuthentication.onAuthStateChanged((currentUser) => {
+      if (currentUser) {
+        user.value = currentUser.fullName;
+      } else {
+        user.value == null;
+      }
+    });
+
+    return { user };
+  },
+};
+
 </script>
 <style>
 #app {

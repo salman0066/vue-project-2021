@@ -9,6 +9,20 @@
     
     <div class = "profile">
       <div>Your Details are as Below. If you wish to change them please fill the change of details form</div>
+
+      <div>
+        <el-card class="box-card">
+
+          <div v-if="user">
+            <div>
+            Welcome Back
+            <span style = "color: green; font-weight: bold">{{ user.fullName }} </span>
+            </div>
+          </div>
+
+        </el-card>
+        </div>
+
 <div>Username : </div>
 <div>Name :</div>
 <div>Institution:</div>
@@ -24,7 +38,7 @@
         <el-input v-model="username" placeholder="Enter username" autocomplete="off" required></el-input>
       </el-form-item>
       <el-form-item label="Name">
-        <el-input v-model="title" placeholder="name" autocomplete="off" required></el-input>
+        <el-input v-model="fullName" placeholder="name" autocomplete="off" required></el-input>
       </el-form-item>
         <el-form-item label="Institution">
         <el-input v-model="institution" placeholder="Enter title" autocomplete="off" required></el-input>
@@ -41,17 +55,35 @@
 </template>
 
 <script>
-
+// import { firebaseFireStore } from "@/firebase/database";
 import {ref} from 'vue';
 
 export default {
+  props: {
+    user: {
+      type: Object,
+      default: () => {},
+    },
+  },
   setup(){
+
+    // const user = ref(null);
+    // //testing if user is retrieved
+    // firebaseFireStore
+    //     .collection("users")
+    //     .doc("9GzkrH8mC8uN8fGhfVq4")
+    //     .get()
+    //     .then((snapshot) => {
+    //     user.value = snapshot.data().name;
+    //     });
+    // return { user };
+
     const username = ref("");
-    const name = ref("")
+    const fullName = ref("")
     const institution = ref("")
     const address = ref("")
     const contact_details= ref("")
-    return {username, name, institution, address, contact_details}
+    return {username, fullName, institution, address, contact_details}
   }
 }
 </script>

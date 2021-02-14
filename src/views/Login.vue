@@ -5,13 +5,13 @@
         <h2>Login</h2>
 
         <!-- Username field -->
-        <el-form-item label="Username: ">
+        <el-form-item label="Email: ">
           <el-input 
           type="text"
           placeholder="Input username"
           required
           autocomplete="off"
-          v-model="username"
+          v-model="email"
           ></el-input>
         </el-form-item>
 
@@ -26,6 +26,12 @@
           ></el-input>
         </el-form-item>
 
+        <el-form-item v-if="errorFirebase">
+          <el-button plain disabled icon="el-icon-error">
+            {{ errorFirebase }}
+          </el-button>
+        </el-form-item>
+
         <el-form-item>
           <el-button type="primary" @click="login">Login</el-button>
         </el-form-item>
@@ -38,16 +44,40 @@
 
 <script>
 import {ref} from 'vue';
+import { firebaseAuthentication } from "@/firebase/database";
+import { useRouter } from "vue-router";
+
 export default {
-  name: 'Login',
-  setup(){
-      const username = ref("");
-      const password = ref("");
+  name: "login",
+  emits: ["login-clicked"],
 
-      return {username, password}
-  }
+  setup() {
+    const email = ref("");
+    const password = ref("");
+    const errorFirebase = ref(null);
 
-}
+    const router = useRouter();
+
+      function login() {
+        const info = {
+          email: email.value,
+          password: password.value,
+        };
+
+        firebaseAuthentication
+        .signInWithEmailAndPassword(info.email,info.password)
+        .then(() => {
+          router.push("/");
+        }, error => {
+          errorFirebase.value = error.message;
+        });
+      }
+
+      return {email, password, errorFirebase, login};
+      },
+  };
+
+
 </script>
 <style scoped>
 button {   
@@ -69,6 +99,7 @@ button {
         display: inline-block;   
         border: 2px solid #C1272D;   
         box-sizing: border-box;   
+        
     }  
  button:hover {   
         opacity: 0.7;   
