@@ -32,14 +32,18 @@ export default {
 
     firebaseAuthentication.onAuthStateChanged((currentUser) => {
       if (currentUser) {
-        user.value = currentUser.fullName;
+        user.value = currentUser.email;
+        console.log(currentUser.email);
+        
       } else {
         user.value == null;
       }
     });
 
     return { user };
+    
   },
+  
 };
 
 </script>

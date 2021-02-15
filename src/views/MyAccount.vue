@@ -13,12 +13,12 @@
       <div>
         <el-card class="box-card">
 
-          <div v-if="user">
+          <div v-if="user"> 
             <div>
             Welcome Back
-            <span style = "color: green; font-weight: bold">{{ user.fullName }} </span>
+            <span style = "color: green; font-weight: bold"> {{ user }} </span>
             </div>
-          </div>
+          </div> 
 
         </el-card>
         </div>

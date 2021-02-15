@@ -156,15 +156,18 @@ export default {
           firebaseAuthentication
           .createUserWithEmailAndPassword(info.email, info.password)
           .then(
-            (userCredentials) => {
-              return userCredentials.user
-                .updateProfile({
-                  fullName: info.Fullname,
-                })
-                .then(() => {
-                  router.replace("register");
-                });
+            () => {
+              router.replace("login");
             },
+            // (userCredentials) => {
+            //   return userCredentials.user
+            //     .updateProfile({
+            //       fullName: info.Fullname,
+            //     })
+            //     .then(() => {
+            //       router.replace("register");
+            //     });
+            // },
             (error) => {
               errorRegistration.value = error.message;
             }
