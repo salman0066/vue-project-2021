@@ -1,20 +1,23 @@
 <template>
-  <div class="about">
-    <h1>This is a graph page</h1>
+  <h3>Bar Chart Example</h3>
+  <div>
+    <bar-chart class="center"></bar-chart>
   </div>
 </template>
 
 <script>
-
-// import {ref} from 'vue';
-
+import BarChart from "@/components/barChart.vue";
 export default {
-  setup(){
-
-  }
-}
+  components: {
+    BarChart,
+  },
+};
 </script>
 
 <style scoped>
-
+.center {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
 </style>

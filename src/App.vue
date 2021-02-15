@@ -2,14 +2,17 @@
 
   <div class="layout">
     <appHeader></appHeader>
+
+    <router-view
+        :user="user"
+        @logout="logout"
+        class="globalfont center"
+      />
+
     <appFooter></appFooter>
   </div>
 
-  <router-view
-    :user="user"
-    @logout="logout"
-    class="globalfont center"
-  />
+ 
 
 </template>
 <script>

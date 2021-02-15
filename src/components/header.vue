@@ -13,7 +13,7 @@
     <router-link style="float:left" :to="{ name: 'UploadData'}"> | Add Data</router-link>
   </div>
 
-  <router-view/>
+  <!-- <router-view/> -->
   </template>
 
 <style scoped>
