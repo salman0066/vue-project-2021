@@ -5,7 +5,11 @@
     <appFooter></appFooter>
   </div>
 
-  <!-- <router-view/> -->
+  <router-view
+    :user="user"
+    @logout="logout"
+    class="globalfont center"
+  />
 
 </template>
 <script>
@@ -18,7 +22,7 @@ import {
   // firebaseFireStore,
   // timestamp,
 } from "@/firebase/database";
-// import { useRouter } from "vue-router";
+ import { useRouter } from "vue-router";
 
 export default {
   components: {
@@ -27,6 +31,7 @@ export default {
   },
   setup() {
   const user = ref(null);
+  const errorLogout = ref(null);
     
 
 
@@ -40,7 +45,21 @@ export default {
       }
     });
 
-    return { user };
+    const router = useRouter();
+
+    function logout() {
+      firebaseAuthentication.signOut().then(
+        () => {
+          user.value = null;
+          router.push("login");
+        },
+        (error) => {
+          errorLogout.value = error.message;
+        }
+      );
+    }
+
+    return { user,logout };
     
   },
   

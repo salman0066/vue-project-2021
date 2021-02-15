@@ -16,7 +16,8 @@
           <div v-if="user"> 
             <div>
             Welcome Back
-            <span style = "color: green; font-weight: bold"> {{ user }} </span>
+            <span style = "color: green; font-weight: bold"> {{ user }} </span> <br>
+            <el-button type="text" icon="el-icon-user" @click="$emit('logout')">Logout</el-button>
             </div>
           </div> 
 
