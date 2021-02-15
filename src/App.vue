@@ -97,4 +97,8 @@ export default {
     box-sizing:border-box;
 }
 
+.mainContent{
+  margin:auto;
+}
+
 </style>

@@ -1,9 +1,8 @@
 <template>
   <el-row>
-    <el-col :span="11" class="mainContent">
+    <el-col :span="23" class="mainContent">
       <el-form ref="form" label-width="auto">
         <h2>Login</h2>
-
         <!-- Username field -->
         <el-form-item label="Email: ">
           <el-input 

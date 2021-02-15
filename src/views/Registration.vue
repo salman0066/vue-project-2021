@@ -1,9 +1,9 @@
 <template>
 <el-row>
-  <el-col :span="11" class="mainContent">
+  <el-col :span="23" class="mainContent">
     <el-form ref="form" label-width="auto">
       <h2>Register</h2>
-      <!-- Username field -->
+      <!-- Email field -->
       <el-form-item label="** Email: ">
         <el-input 
         type="text"
@@ -14,7 +14,7 @@
         ></el-input>
       </el-form-item>
 
-      <!-- Email field -->
+      <!-- Username field -->
       <el-form-item label="** Username: ">
         <el-input 
         type="text"
@@ -193,10 +193,6 @@ export default {
 
 </script>
 <style scoped>
-.mainContent{
-  margin:auto;
-
-}
 
 button {   
        background-color: #C1272D;   
