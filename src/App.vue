@@ -1,7 +1,7 @@
 <template>
 
   <div class="layout">
-    <appHeader></appHeader>
+    <appHeader :user="user" @logout="logout" />
 
     <router-view
         :user="user"
