@@ -1,46 +1,34 @@
 <template>
-<div class="header">
-  <a href="/"><img alt="myocardio logo" src="@/assets/logo.png"> </a>
-  
-</div>
-
-  <div id="nav">
-    
-            
-    <router-link style="float:left" v-bind:to="{ name: 'Home' }">Home</router-link> 
-    <router-link style="float:left" :to="{ name: 'About'}">About Us</router-link> 
-    <router-link style="float:left" round v-if="!user" :to="{ name: 'Registration'}">Registration</router-link> 
-    <router-link style="float:left" round v-if="!user" :to="{ name: 'Login'}">Login</router-link>
-    
-    
-    <div style="float:right" v-if="user" > 
-            <!-- Logged in (
+   <div class="header">
+      <a href="/"><img alt="myocardio logo" src="@/assets/logo.png"> </a>
+   </div>
+   <div id="nav">
+      <router-link style="float:left" v-bind:to="{ name: 'Home' }">Home</router-link>
+      <router-link style="float:left" :to="{ name: 'About'}">About Us</router-link>
+      <router-link style="float:left" round v-if="!user" :to="{ name: 'Registration'}">Registration</router-link>
+      <router-link style="float:left" round v-if="!user" :to="{ name: 'Login'}">Login</router-link>
+      <div style="float:right" v-if="user" >
+         <!-- Logged in (
             <span style = "color: white; font-weight: bold"> {{ user }} </span> )
             <a @click="$emit('logout')">Logout? </a>
             <router-link style="float:right" :to="{ name: 'MyGraphs'}">My Graphs</router-link> 
             <router-link style="float:right" :to="{ name: 'MyAccount'}">My Account|</router-link>  -->
-
-            <div class="dropdown">
-              <button class="dropbtn">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                Logged in ({{ user }})
-                  <i class="fa fa-caret-down"></i>
-              </button>
+         <div class="dropdown">
+            <button class="dropbtn">
+            <i class="fa fa-user"></i>
+            Logged in ({{ user }})
+            <i class="fa fa-caret-down"></i>
+            </button>
             <div class="dropdown-content">
-                <router-link  :to="{ name: 'MyGraphs'}">My Graphs</router-link> 
-                <router-link  :to="{ name: 'MyAccount'}">My Account</router-link> 
-                <router-link style="float:left" :to="{ name: 'UploadData'}"> Add Data</router-link>
-                <a @click="$emit('logout')">Logout</a>
-
+               <router-link  :to="{ name: 'MyAccount'}">My Account</router-link>
+               <router-link  :to="{ name: 'MyGraphs'}">My Graphs</router-link>
+               <router-link  :to="{ name: 'UploadData'}"> Add Data</router-link>
+               <a @click="$emit('logout')">Logout</a>
             </div>
-            </div> 
+         </div>
       </div>
-  </div>
- 
- 
-
-  
-  </template>
+   </div>
+</template>
 
   <script>
 export default {
@@ -113,6 +101,7 @@ export default {
 
 .dropdown-content a:hover {
   background-color: #7e2023;
+  cursor: pointer;  
 }
 
 .dropdown:hover .dropdown-content {

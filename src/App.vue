@@ -1,73 +1,69 @@
 <template>
-
-  <div class="layout">
-    <appHeader :user="user" @logout="logout" />
-
-    <router-view
-        :user="user"
-        @logout="logout"
-        class="globalfont center"
-      />
-
-    <appFooter></appFooter>
-  </div>
-
- 
-
+   <div class="layout">
+      <appHeader :user="user" @logout="logout" />
+      <router-view
+         :user="user"
+         @logout="logout"
+         class="globalfont center"
+         />
+      <appFooter></appFooter>
+   </div>
 </template>
+
 <script>
 // @ is an alias to /src
 import footer from '@/components/footer.vue'
 import header from '@/components/header.vue'
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import {
-  firebaseAuthentication,
-  // firebaseFireStore,
-  // timestamp,
+	firebaseAuthentication,
+	// firebaseFireStore,
+	// timestamp,
 } from "@/firebase/database";
- import { useRouter } from "vue-router";
 
 export default {
-  components: {
-    appFooter: footer,
-    appHeader: header
-  },
-  setup() {
-  const user = ref(null);
-  const errorLogout = ref(null);
-    
+	components: {
+		appFooter: footer,
+		appHeader: header
+	},
+	setup() {
+		const user = ref(null);
+		const errorLogout = ref(null);
 
 
-    firebaseAuthentication.onAuthStateChanged((currentUser) => {
-      if (currentUser) {
-        user.value = currentUser.email;
-        console.log(currentUser.email);
-        
-      } else {
-        user.value == null;
-      }
-    });
+		firebaseAuthentication.onAuthStateChanged((currentUser) => {
+			if (currentUser) {
+				user.value = currentUser.email;
+				console.log(currentUser.email);
 
-    const router = useRouter();
+			} else {
+				user.value == null;
+			}
+		});
 
-    function logout() {
-      firebaseAuthentication.signOut().then(
-        () => {
-          user.value = null;
-          router.push("login");
-        },
-        (error) => {
-          errorLogout.value = error.message;
-        }
-      );
-    }
+		const router = useRouter();
 
-    return { user,logout };
-    
-  },
-  
+		function logout() {
+			firebaseAuthentication.signOut().then(
+				() => {
+					user.value = null;
+					router.push("login");
+				},
+				(error) => {
+					errorLogout.value = error.message;
+				}
+			);
+		}
+
+		return {
+			user,
+			logout
+		};
+
+	},
+
 };
-
 </script>
 <style>
 #app {
