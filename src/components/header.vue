@@ -21,7 +21,9 @@
             <router-link style="float:right" :to="{ name: 'MyAccount'}">My Account|</router-link>  -->
 
             <div class="dropdown">
-              <button class="dropbtn">Logged in ({{ user }})
+              <button class="dropbtn">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                Logged in ({{ user }})
                   <i class="fa fa-caret-down"></i>
               </button>
             <div class="dropdown-content">

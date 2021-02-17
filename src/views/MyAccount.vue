@@ -52,7 +52,6 @@
       </el-form-item>
 <el-button>Update Details</el-button>
     </el-form>
-<h1> {{ user }} </h1>
   </body>
 </template>
 
