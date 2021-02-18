@@ -5,6 +5,7 @@
    <div id="nav">
       <router-link style="float:left" v-bind:to="{ name: 'Home' }">Home</router-link>
       <router-link style="float:left" :to="{ name: 'About'}">About Us</router-link>
+      <router-link style="float:left" :to="{ name: 'Search'}">Search</router-link>
       <router-link style="float:left" round v-if="!user" :to="{ name: 'Registration'}">Registration</router-link>
       <router-link style="float:left" round v-if="!user" :to="{ name: 'Login'}">Login</router-link>
       <div style="float:right" v-if="user" >
