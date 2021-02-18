@@ -17,11 +17,11 @@
                </div>
             </el-card>
          </div>
-         <div>Username : </div>
-         <div>Name :</div>
-         <div>Institution:</div>
-         <div>Address:</div>
-         <div>Contact Detail: </div>
+         <div>Email : {{userDetails.email}}</div>
+         <div>Name :  {{userDetails.fullName}}</div>
+         <div>Institution:  {{userDetails.institution}}</div>
+         <div>Address: {{userDetails.address}}</div>
+         <div>Contact Detail: {{userDetails.contact_details}} </div>
       </div>
       <b>
          <div>
@@ -51,8 +51,8 @@
 </template>
 
 <script>
-// import { firebaseFireStore } from "@/firebase/database";
-import {ref} from 'vue';
+import {  firebaseAuthentication, firebaseFireStore } from "@/firebase/database";
+import {ref, watchEffect} from 'vue';
 
 export default {
   props: {
@@ -63,23 +63,50 @@ export default {
   },
   setup(){
 
-    // const user = ref(null);
-    // //testing if user is retrieved
-    // firebaseFireStore
-    //     .collection("users")
-    //     .doc("9GzkrH8mC8uN8fGhfVq4")
-    //     .get()
-    //     .then((snapshot) => {
-    //     user.value = snapshot.data().name;
-    //     });
-    // return { user };
+   //  const userId = firebaseAuthentication.currentUser;
+     const userDetails = ref(null);
+     console.log( firebaseAuthentication.currentUser.uid)
 
+   //  userDetails.value = firebaseFireStore.collection("users").doc(userId);
+
+   //  console.log(userDetails.value)
+     //testing if user is retrieved
+
+
+     
+     const snapShotObject = firebaseFireStore.collection("users").doc(`${firebaseAuthentication.currentUser.uid}`)
+     
+
+          const unsub = snapShotObject.onSnapshot(
+    doc => {
+      // need to make sure the doc exists & has data
+      if (doc.data()) {
+        console.log(doc.data());
+        userDetails.value = {
+          fullName: doc.data().fullName,
+          email: doc.data().email,
+          institution: doc.data().institution,
+          address: doc.data().address,
+          contact_details: doc.data().contact_details
+        };
+     
+      } 
+    },
+
+  );
+
+    
+    watchEffect(onInvalidate => {
+    onInvalidate(() => unsub());
+  });
+         
+         console.log(userDetails.value)
     const username = ref("");
     const fullName = ref("")
     const institution = ref("")
     const address = ref("")
     const contact_details= ref("")
-    return {username, fullName, institution, address, contact_details}
+    return {username, fullName, institution, address, contact_details, userDetails}
   }
 }
 </script>

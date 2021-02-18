@@ -113,7 +113,7 @@
 <script>
 import {ref, watch } from "vue";
 import { useRouter } from "vue-router";
-import { firebaseAuthentication } from "@/firebase/database";
+import { firebaseAuthentication, firebaseFireStore } from "@/firebase/database";
 
 export default {
   name: "register",
@@ -145,20 +145,23 @@ export default {
 
       const router = useRouter();
 
-      function register() {
+      const register = async () => {
         const info = {
           email: email.value,
           password: password.value,
           fullName: fullName.value,
+          institution: institution.value,
+          address: address.value,
+          phoneNumber: phoneNumber.value,
         };
 
         if (!errorRegistration.value){
-          firebaseAuthentication
+          const res = await firebaseAuthentication
           .createUserWithEmailAndPassword(info.email, info.password)
-          .then(
-            () => {
+         // .then(
+         //   () => {
               router.replace("login");
-            },
+         //   },
             // (userCredentials) => {
             //   return userCredentials.user
             //     .updateProfile({
@@ -168,10 +171,20 @@ export default {
             //       router.replace("register");
             //     });
             // },
-            (error) => {
-              errorRegistration.value = error.message;
-            }
-          );
+                  
+         //   (error) => {
+          //    errorRegistration.value = error.message;
+          //  }
+           
+        //  );
+
+          console.log(res)
+
+           firebaseFireStore.collection('users').doc(`${res.user.uid}`).set(info)
+
+    
+
+
         }
       }
       return {
