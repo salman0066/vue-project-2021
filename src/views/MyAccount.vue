@@ -26,11 +26,6 @@
           </div>
         </el-card>
       </div>
-      <div>Email : {{userDetails.email}}</div>
-      <div>Name : {{userDetails.fullName}}</div>
-      <div>Institution: {{userDetails.institution}}</div>
-      <div>Address: {{userDetails.address}}</div>
-      <div>Contact Detail: {{userDetails.contact_details}}</div>
     </div>
     <b>
       <div>
@@ -42,7 +37,7 @@
       <el-form-item label="Username">
         <el-input
           v-model="username"
-          placeholder="Enter username"
+          :placeholder= userDetails.email
           autocomplete="off"
           required
         ></el-input>
@@ -50,7 +45,7 @@
       <el-form-item label="Name">
         <el-input
           v-model="fullName"
-          placeholder="name"
+          :placeholder= userDetails.fullName
           autocomplete="off"
           required
         ></el-input>
@@ -58,7 +53,7 @@
       <el-form-item label="Institution">
         <el-input
           v-model="institution"
-          placeholder="Enter title"
+          :placeholder= userDetails.institution
           autocomplete="off"
           required
         ></el-input>
@@ -66,7 +61,7 @@
       <el-form-item label="Address">
         <el-input
           v-model="address"
-          placeholder="Enter title"
+          :placeholder= userDetails.address
           autocomplete="off"
           required
         ></el-input>
@@ -74,7 +69,7 @@
       <el-form-item label="Contact Details">
         <el-input
           v-model="contact_details"
-          placeholder="Enter title"
+          :placeholder= userDetails.contact_details
           autocomplete="off"
           required
         ></el-input>
