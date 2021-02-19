@@ -26,6 +26,14 @@
           </div>
         </el-card>
       </div>
+<<<<<<< HEAD
+=======
+      <div>Email : {{userDetails.email}}</div>
+      <div>Name : {{userDetails.fullName}}</div>
+      <div>Institution: {{userDetails.institution}}</div>
+      <div>Address: {{userDetails.address}}</div>
+      <div>Contact Detail: {{userDetails.phoneNumber}}</div>
+>>>>>>> 3d93a9a16be367380c39e5a743c3e6cf0ac53bcc
     </div>
     <b>
       <div>
@@ -121,7 +129,7 @@ export default {
 						email: doc.data().email,
 						institution: doc.data().institution,
 						address: doc.data().address,
-						contact_details: doc.data().contact_details
+						phoneNumber: doc.data().phoneNumber
 					};
 
 				}
@@ -140,14 +148,14 @@ export default {
 		const fullName = ref("")
 		const institution = ref("")
 		const address = ref("")
-		const contact_details = ref("")
+		const phoneNumber = ref("")
 		return {
 			email,
 			username,
 			fullName,
 			institution,
 			address,
-			contact_details,
+			phoneNumber,
 			userDetails
 		}
 	}
