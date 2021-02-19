@@ -74,7 +74,7 @@
       <el-form-item label="Contact Details">
         <el-input
           v-model="contact_details"
-          :placeholder= userDetails.contact_details
+          :placeholder= userDetails.phoneNumber
           autocomplete="off"
           required
         ></el-input>
