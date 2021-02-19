@@ -8,7 +8,7 @@
 <el-form >
     <el-form-item label="Enter Search Term">
     <el-input type="text" placeholder="Search term.." v-model="search" required></el-input>
-    <el-button  @click="$emit('Search')">Search</el-button>
+    
     </el-form-item>
 </el-form>
 </div>  
