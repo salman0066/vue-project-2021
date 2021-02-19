@@ -160,7 +160,7 @@ export default {
           .createUserWithEmailAndPassword(info.email, info.password)
          // .then(
          //   () => {
-              router.replace("login");
+              router.replace("my_account");
          //   },
             // (userCredentials) => {
             //   return userCredentials.user
