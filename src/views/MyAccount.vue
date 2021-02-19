@@ -26,14 +26,11 @@
           </div>
         </el-card>
       </div>
-<<<<<<< HEAD
-=======
       <div>Email : {{userDetails.email}}</div>
       <div>Name : {{userDetails.fullName}}</div>
       <div>Institution: {{userDetails.institution}}</div>
       <div>Address: {{userDetails.address}}</div>
       <div>Contact Detail: {{userDetails.phoneNumber}}</div>
->>>>>>> 3d93a9a16be367380c39e5a743c3e6cf0ac53bcc
     </div>
     <b>
       <div>
