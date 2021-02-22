@@ -24,7 +24,7 @@
                <router-link  :to="{ name: 'MyAccount'}">My Account</router-link>
                <router-link  :to="{ name: 'MyGraphs'}">My Graphs</router-link>
                <router-link  :to="{ name: 'UploadData'}"> Add Data</router-link>
-               <a @click="$emit('logout')">Logout</a>
+               <a :to="{name: login}" @click="$emit('logout')">Logout</a>
             </div>
          </div>
       </div>

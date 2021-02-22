@@ -1,12 +1,8 @@
 <template>
-  <div>
-    <apexchart
-      width="500"
-      type="bar"
-      :options="chartOptionsBasicBarChart"
-      :series="seriesBasicBarChart"
-    ></apexchart>
 
+
+<!-- 
+  <div>
     <apexchart
       width="500"
       type="bar"
@@ -16,40 +12,91 @@
     <div>
       <button @click="updateBarChart">Update!</button>
     </div>
+  </div> -->
+      <apexchart
+        width="500"
+        type="bar"
+        :options="chartOptions"
+        :series="series"
+      ></apexchart>
+  <div id="graphSection" v-if="myData">
+    <div 
+      id="graphInsert"
+    >
+
+      <!-- <div>this will be a graph {{}} {{}}</div> -->
+
+
+    </div>
   </div>
+
+  <div v-else>
+    Your graphs will appear here once you have uploaded some data
+  </div>
+  
 </template>
 
 <script>
 import { ref } from "vue";
+// import getData from '@/firebase/getGraphData';
+import {firebaseFireStore} from '@/firebase/database';
+
 export default {
-  setup() {
-    const chartOptionsBasicBarChart = ref({
-      chart: {
-        id: "barchart-example",
-      },
-      xaxis: {
-        categories: [
-          "Jan 2015",
-          "Feb 2015",
-          "Mar 2015",
-          "Apr 2015",
-          "May 2015",
-          "June 2015",
-          "July 2015",
-          "Aug 2015",
-          "Sep 2015",
-          "Oct 2015",
-          "Nov 2015",
-          "Dec 2015",
-        ],
-      },
-    });
-    const seriesBasicBarChart = ref([
-      {
-        name: "series-1",
-        data: [30, 40, 35, 50, 49, 60, 70, 91],
-      },
-    ]);
+  setup() { 
+    // const db = firebaseFireStore;
+    let myData = [];
+    const elem = document.getElementById('graphInsert');
+    //myData = getData();
+
+    function getData(){
+      const db = firebaseFireStore;
+      let data = [];
+
+
+      db.collection('graphs').orderBy("title").get().then((snapshot)=>{
+          snapshot.forEach((doc) => {
+              //console.log(doc.data());
+              // console.warn(doc.id);
+              // console.warn(doc.data().x_data, doc.data().y_data);
+              data.push({
+                  x_data: doc.data().x_data,
+                  y_data: doc.data().y_data
+              });
+              // console.log(data);
+              // data[0].x_data = (doc.data().x_data);
+          })
+      });
+    return data;
+    }
+
+    function getDataAsync(callbackPopulateApex, callbackGetData){ /**this calls populateApexCharts */
+      try {
+        myData = callbackGetData(); 
+      } catch (error) {
+        console.error(error);
+      }
+      try {
+        if(myData != []){
+          elem.innerHTML = "got data - running callbackPopulateApex";
+          callbackPopulateApex(myData);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    function populateApexCharts(graphData){
+      if(graphData != []){
+        console.log(graphData && graphData.length);
+        elem.innerHTML = "finished populateApexCharts";
+      }
+    
+    }
+
+    getDataAsync(populateApexCharts, getData);
+
+
+
     const chartOptions = ref({
       chart: {
         id: "barchart-example",
@@ -64,31 +111,36 @@ export default {
         data: [30, 40, 35, 50, 49, 60, 70, 91],
       },
     ]);
-    function updateBarChart() {
-      const max = 90;
-      const min = 20;
-      const newData = series.value[0].data.map(() => {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-      });
-      const colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0"];
-      // Make sure to update the whole options config and not just a single property to allow the Vue watch catch the change.
-      chartOptions.value = {
-        colors: [colors[Math.floor(Math.random() * colors.length)]],
-      };
-      // In the same way, update the series option
-      series.value = [
-        {
-          data: newData,
-        },
-      ];
-    }
+
+
+
     return {
-      chartOptionsBasicBarChart,
-      seriesBasicBarChart,
+      // updateBarChart,
+      elem,
       chartOptions,
       series,
-      updateBarChart
+      myData,
+      getData,
+      getDataAsync
     };
   },
 };
 </script>
+
+<style scoped>
+.outerdiv {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+ 
+
+.innerdiv {
+    display: inline-block;  
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+</style>

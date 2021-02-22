@@ -1,25 +1,36 @@
-// import {ref} from 'vue';
+import {ref} from 'vue';
 import {firebaseFireStore} from '@/firebase/database';
 
 function getData(){
 
     const db = firebaseFireStore;
-    let data = [];
+    let data = ref([]);
+    console.log("getGraphData file accessed");
 
     db.collection('graphs').orderBy("title").get().then((snapshot)=>{
-        snapshot.forEach((doc) => {
-            //console.log(doc.data());
-            // console.warn(doc.id);
-            // console.warn(doc.data().x_data, doc.data().y_data);
+        snapshot.docChanges().forEach((change) => {
+            let dbChange = change.type;
 
-            data.push({
-                x_data: doc.data().x_data,
-                y_data: doc.data().y_data
-            });
-            // console.log(data);
-            // data[0].x_data = (doc.data().x_data);
+            // if(dbChange == "added"){
+            //     data.value = change
+            // }
+
+            console.log("docChanges");
+
+            if(dbChange == "added"){
+                data.value.push({
+                    x_data: change.doc.data().x_data,
+                    y_data: change.doc.data().y_data,
+                    x_name: change.doc.data().x_name,
+                    y_name: change.doc.data().y_name,
+                    title: change.doc.data().title,
+                    tags: change.doc.data().tags
+                });
+            }
+            
         })
     });
+    console.log(typeof data.value);
     return data;
 
   }
