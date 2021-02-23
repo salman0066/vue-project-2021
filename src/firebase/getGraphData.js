@@ -1,24 +1,18 @@
 import {ref} from 'vue';
 import {firebaseFireStore} from '@/firebase/database';
-
-function getData(){
+let data = ref([]);
+async function getData(){
 
     const db = firebaseFireStore;
-    let data = ref([]);
+    
     console.log("getGraphData file accessed");
-
-    db.collection('graphs').orderBy("title").get().then((snapshot)=>{
+    
+    await db.collection('graphs').orderBy("title").get().then((snapshot)=>{
+        let snapData = [];
         snapshot.docChanges().forEach((change) => {
             let dbChange = change.type;
-
-            // if(dbChange == "added"){
-            //     data.value = change
-            // }
-
-            console.log("docChanges");
-
             if(dbChange == "added"){
-                data.value.push({
+                snapData.push({
                     x_data: change.doc.data().x_data,
                     y_data: change.doc.data().y_data,
                     x_name: change.doc.data().x_name,
@@ -26,12 +20,15 @@ function getData(){
                     title: change.doc.data().title,
                     tags: change.doc.data().tags
                 });
+                // console.log("snapData",snapData);
             }
-            
-        })
+        });
+        // console.log("outside snapData", snapData);
+        data.value = snapData;   
+        // console.log("data.value ", data.value);
     });
-    console.log(typeof data.value);
-    return data;
+    console.log("before return ",data.value);
+    return data.value;
 
   }
 
