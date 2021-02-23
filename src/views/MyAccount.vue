@@ -2,19 +2,14 @@
   <div class="about">
     <h1>Your Account</h1>
   </div>
-  <h2 class="header">Welcome to your Profile</h2>
   <body>
     <div class="profile">
-      <div>
-        Your Details are as Below. If you wish to change them please fill the
-        change of details form
-      </div>
       <div>
         <el-card class="box-card">
           <div v-if="user">
             <div>
               Welcome Back
-              <span style="color: green; font-weight: bold"> {{ user }} </span>
+              <span style="color: green; font-weight: bold"> {{ userDetails.email }} </span>
               <br />
               <el-button
                 type="text"
@@ -26,18 +21,14 @@
           </div>
         </el-card>
       </div>
-      <div>Email : {{userDetails.email}}</div>
-      <div>Name : {{userDetails.fullName}}</div>
-      <div>Institution: {{userDetails.institution}}</div>
-      <div>Address: {{userDetails.address}}</div>
-      <div>Contact Detail: {{userDetails.phoneNumber}}</div>
+      <div style ="display: none">Email : {{userDetails.fullName}}</div>
     </div>
     <b>
       <div>
-        <h1>Change of Detail Form</h1>
+        <h1>Update Account</h1>
       </div>
     </b>
-    <div>To edit your details please fill out the form below</div>
+    <div>To update your account details please fill out the form below:</div>
     <el-form>
       <el-form-item label="Username">
         <el-input
@@ -161,7 +152,7 @@ export default {
 
 <style scoped>
 .profile {
-  text-align: left;
+  text-align: center;
 }
 .about {
   text-align: middle;
