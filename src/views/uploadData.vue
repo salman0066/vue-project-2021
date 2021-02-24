@@ -98,23 +98,25 @@
         </form>
       <!-- end h1 title -->
     </div> <!-- end of form -->
+    <div id="firebaseResult" hidden=true>
+      <el-row style="background-color:blue">
+        <el-col style="background-color: aqua" :offset="20" :span="4">
 
-    <el-row style="background-color:blue">
-      <el-col style="background-color: aqua" :offset="12" :span="12">
-        <div id="firebaseResult">
-          <v-alert
-            :type="success"
-            :border="left"
-            :elevation="5"
-            colored-border
-            color="deep-purple accent-4"
-          >
-          alert text
-          </v-alert>
-        </div>
-      </el-col>
-    </el-row>
-
+          <button>hello</button>
+          
+            <!-- <v-alert
+              :type="success"
+              :border="left"
+              :elevation="5"
+              colored-border
+              color="deep-purple accent-4"
+            >
+            alert text
+            </v-alert> -->
+      
+        </el-col>
+      </el-row>
+    </div>
 </template>
 
 <script>
@@ -124,54 +126,56 @@ import { firebaseFireStore } from "@/firebase/database";
 export default {
   data() {
     return {
-      data: {
-        uid_source: "alextesting@gmail.com",
-        tags: ["wow", "cool", "syncopy", "cardio"],
-        title: "TESTING NEW FIREBASE FORMAT",
-        x_data: ["test 0","test 1","test 2","test 3","test 4","test 5","test 6","test 7","test 8","test 9"],
-        y_data: [
-          {
-            label: "data ydata label 0",
-            data: [23,45,56,67,89,76,34,56,11,1]
-          },
-          {
-            label: "data ydata label 1",
-            data: [12,34,12,23,43,23,12,44,6,4]
-          }
-        ]
-    }
-    
-    // data: {
-    //   x_data: [],
-    //   y_data: [
-    //     {
-    //       label: "",
-    //       data: []
-    //     },
-    //     {
-    //       label: "",
-    //       data: []
-    //     }
-    //   ]
+    //   data: {
+    //     uid_source: "alextesting@gmail.com",
+    //     tags: ["wow", "cool", "syncopy", "cardio"],
+    //     title: "TESTING NEW FIREBASE FORMAT",
+    //     x_data: ["test 0","test 1","test 2","test 3","test 4","test 5","test 6","test 7","test 8","test 9"],
+    //     y_data: [
+    //       {
+    //         label: "data ydata label 0",
+    //         data: [23,45,56,67,89,76,34,56,11,1]
+    //       },
+    //       {
+    //         label: "data ydata label 1",
+    //         data: [12,34,12,23,43,23,12,44,6,4]
+    //       }
+    //     ]
     // }
+    
+    data: {
+      x_data: [],
+      y_data: [
+        {
+          label: "",
+          data: []
+        },
+        {
+          label: "",
+          data: []
+        }
+      ]
+    }
   }
 },
 
-
-
-
-
-
 methods: {
+
+  // showFirebaseMessage(){
+  //   let elem = document.getElementById('firebaseResult');
+  //   console.log(elem);
+  // },
+
   onFormSubmit(event) {
     event.preventDefault();
     console.log("alex echo");
     console.log(this.data);
     firebaseFireStore.collection('data').add(this.data).then(() => {
-      setTimeout(()=>{
-        alert("Data successfully added!");
-      }, 5);
+      // setTimeout(()=>{
+      //   showFirebaseMessage();
+      // }, 5);
       
+      alert("Data added");
 
       this.data.data_type = ''
       this.data.title = ''
@@ -193,10 +197,6 @@ methods: {
       })
     },
 
-    xaxisAddField(){
-      let x_axis_form = document.getElementById('xaxis-input');
-      x_axis_form.append(<p>hello</p>);
-    }
 
   }
 }
@@ -258,5 +258,7 @@ button {
   border-radius: 10px;
   padding: 10px;
 }
+
+
 
 </style>
