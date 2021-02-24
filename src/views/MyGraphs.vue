@@ -1,16 +1,16 @@
 <template>
-  <!-- <div>
+  <div>
     <apexchart
       width="500"
-      type="bar"
+      type="line"
       :options="chartOptions"
       :series="apexSeries"
     ></apexchart>
 
-    testing {{ apexOptions }}
-  </div> -->
+  </div>
 
-  <div id="graphs" class="outerdiv" v-if="true">
+
+  <!-- <div id="graphs" class="outerdiv" v-if="true">
     <div
       i="graph"
       class="innerdiv"
@@ -28,7 +28,7 @@
         :options="fireData"
         :series="apexSeries"
       ></apexchart>
-    </div>
+    </div> -->
 
     <!-- <div
       id="graph"
@@ -46,12 +46,12 @@
         <p>x's: {{ fire.x_data[0] }}, {{ fire.x_data[1] }}</p>
         <p>y's: => {{ fire.y_data }}</p>
       </div>
-    </div> -->
-  </div>
-
+    </div> 
+  </div>-->
+<!-- 
   <div v-else>
     Your graphs will appear here once you have uploaded some data
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -63,176 +63,18 @@ export default {
   setup() {
   'use strict';
 
- // 'use strict';
-                // const myData = [];
-
-                // function getData() {
-                //   return new Promise((resolve, reject) => {
-                //     let result = '';
-                //     const db = firebaseFireStore;
-                //     db.collection("graphs").orderBy("title").get().then((snapshot) => {
-                //       snapshot.forEach((doc) => {
-                //         //console.log(doc.data());
-                //         // console.warn(doc.id);
-                //         // console.warn(doc.data().x_data, doc.data().y_data);
-                //         // myData.push({
-                //         //   x_data: doc.data().x_data,
-                //         //   y_data: doc.data().y_data,
-                //         // });
-
-                //         let graphObj = createGraphRecord({x_data: doc.data().x_data});
-                //         logGraphRecord(graphObj);
-                //         console.log("db collection");
-
-                //         let prom = Promise.resolve(createGraphRecord);
-                //         prom.then(logGraphRecord());
-
-
-                //       });
-                //     });
-                //     console.log(result);
-                //     if(result == "success"){
-                //       resolve();
-                //     }
-                //     reject("not success");
-                //   });
-                // }
-
-                // function createGraphRecord(graph){
-                //   let graphObj = {
-                //     x_data: graph.x_data
-                //     // y_data: graph.y_data,
-                //     // x_name: graph.x_name
-                //     // y_name: graph.
-                //     // title: 
-                //     // tags: 
-                //   }
-                //   console.log(graphObj, graphObj.x_data);
-                //   return new Object(graphObj);
-                // }
-
-                // function logGraphRecord(graph){
-                //   return new Promise((resolve, reject) => {
-                //     myData.push(graph);
-                //     console.log(myData);
-                //     console.log(graph);
-                //     if(graph){
-                //       resolve("success");
-                //     }
-                //     else{
-                //       reject("no graph");
-                //     }
-                //   })
-                // }
-
-
-  // getData();
-  // console.log("this");
-
-    // console.log("data")
-    
-    // const db = firebaseFireStore;
-    // let  data = ref([]);
-    // console.log("getGraphData file accessed");
-    // let snapData = [];
-    // db.collection('graphs').orderBy("title").onSnapshot((snapshot)=>{
-    //     snapshot.docChanges().forEach((change) => {
-    //         let dbChange = change.type;
-
-    //         console.log(dbChange, "found record in firebase");
-
-    //         if(dbChange == "added"){
-    //             snapData.push({
-    //                 x_data: change.doc.data().x_data,
-    //                 y_data: change.doc.data().y_data,
-    //                 x_name: change.doc.data().x_name,
-    //                 y_name: change.doc.data().y_name,
-    //                 title: change.doc.data().title,
-    //                 tags: change.doc.data().tags
-    //             });
-    //         }
-    //     });
-    //     data.value = snapData;   
-    //     console.log(data.value);
-    // });
-
-
     let data = [];
-    // function getDataAsync() {
-    //   return new Promise((resolve, reject) => {
-    //     data = getData().then(result => result.data);
-    //     // data = Array.from(data, x => x);
-    //     if (!data){
-    //       reject("something went wrong");
-    //     }
-    //     else {
-
-    //       resolve();
-    //     }
-    //   });
-    // }
-
-    // function printAsyncData(){
-    //   console.log(typeof data);
-    //   console.log(data);
-    //   console.log(data.value);
-    // }
-    
-    // let myData = [];
-    // getDataAsync().then(/*printAsyncData*/);
-
     getData().then(result => {
       data = result
     })
-    .then(()=> {
-      console.log(data);
-      console.log(data.length);
-      
+    .then(()=> {   
+
       for(let i = 0; i<data.length; i++){
         let thisData = data[i];
         console.log(thisData.x_data, thisData.title, thisData.tags);
       }
+      
     });
-
-    // let myData = [];
-    // function getDataAsync(callbackPopulateApex, callbackGetData){ /**this calls populateApexCharts */
-    //   try {
-    //     myData = callbackGetData(); 
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    //   try {
-    //     if(myData != []){
-    //       callbackPopulateApex(myData);
-    //     }
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // }
-
-    // function populateApexCharts(graphData){
-    //   if(graphData != []){
-    //     console.log(graphData && graphData.length);
-    //     console.log(graphData);
-    //   }
-    
-    // }
-
-    // getDataAsync(populateApexCharts, getData);
-
-    /*
-    let masterArray = ref([
-      [
-        {chartOptionsBasicBarChart},
-        {seriesBasicBarChart}
-      ],
-      [
-        {chartOptionsBasicBarChart},
-        {seriesBasicBarChart}
-      ]
-    ])
-    */
-
 
     let firestoreData = ref([
       {
@@ -259,38 +101,135 @@ export default {
     ]);
 
 
-
-
-
-    // let apexOptions = ref({ // -------- more complicated array
-    //   series: {
-    //     data: []
-    //   },
-    //   options: {
-    //     xaxis: {
-    //       categories: []
-    //     },
-    //   }
-    // });
+    let allApexOptions = ref({ 
+      series: [
+        {
+          name: "",
+          data: []
+        },
+        {
+          name: "",
+          data: [],
+        }
+      ],
+      options: [
+        {
+          xaxis: {
+            categories: []
+          },
+        },
+        {
+          xaxis: {
+            categories: []
+          },
+        }
+      ]
+    });
 
     let fireData;
 
-    let allApexOptions = reactive([]);
+    let apexMaster = reactive([]); /**array of all the firestore records with apex structure */
 
-    // const chartOptions = ref({
-    //   chart: {
-    //     id: "barchart-example",
-    //   },
-    //   xaxis: {
-    //     categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
-    //   },
-    // });
+    const chartOptions = ref({
+      chart: {
+        id: "barchart-example",
+        dropShadow: {
+                enabled: true,
+                color: '#000',
+                top: 18,
+                left: 7,
+                blur: 10,
+                opacity: 0.2
+        },
+        toolbar: {
+          show: false /** can put 1/0 for true/false */
+        }
+      },
+      colors: [
+        '#259ffb',
+        '#25e6a6'
+        ],
+      dataLabels: {
+        enabled: true,
+      },
+      stroke: {
+        curve: ['smooth','stepline', 'straight']
+      },
+      xaxis: {
+        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+      }
+    });
 
     let apexSeries = [
       {
-        data: [30, 40, 35, 66, 77, 88, 99, "20"],
+        name: "data 1",
+        data: [30, 40, 35, 66, 77, 88, 99, 20],
+      },
+      {
+        name: "data 2",
+        data: [1,6,3,44,6,0,7,100],
       },
     ];
+/*
+    chartOptions: {
+            chart: {
+              height: 350,
+              type: 'line',
+              dropShadow: {
+                enabled: true,
+                color: '#000',
+                top: 18,
+                left: 7,
+                blur: 10,
+                opacity: 0.2
+              },
+              toolbar: {
+                show: false
+              }
+            },
+            colors: ['#77B6EA', '#545454'],
+            dataLabels: {
+              enabled: true,
+            },
+            stroke: {
+              curve: 'smooth'
+            },
+            title: {
+              text: 'Average High & Low Temperature',
+              align: 'left'
+            },
+            grid: {
+              borderColor: '#e7e7e7',
+              row: {
+                colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                opacity: 0.5
+              },
+            },
+            markers: {
+              size: 1
+            },
+            xaxis: {
+              categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+              title: {
+                text: 'Month'
+              }
+            },
+            yaxis: {
+              title: {
+                text: 'Temperature'
+              },
+              min: 5,
+              max: 40
+            },
+            legend: {
+              position: 'top',
+              horizontalAlign: 'right',
+              floating: true,
+              offsetY: -25,
+              offsetX: -5
+            }
+          },
+          */
 
     const series = ref([
       {
@@ -311,14 +250,14 @@ export default {
         //console.log(fireData.x_data);
         apexOptions.xaxis.categories.push(fireData.x_data);
         //apexSeries.data.push(fireData.y_data);
-        allApexOptions.push(apexOptions);
+        apexMaster.push(apexOptions);
 
         //console.log(allApexOptions);
       }
     }
 
     return {
-      // chartOptions,
+      chartOptions,
       series,
       // getData,
       // getDataAsync,

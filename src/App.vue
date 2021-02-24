@@ -1,4 +1,5 @@
 <template>
+
   <div class="layout">
     <appHeader :user="user" @logout="logout" />
 
