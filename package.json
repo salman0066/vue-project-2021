@@ -10,14 +10,19 @@
   "dependencies": {
     "apexcharts": "^3.24.0",
     "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
     "core-js": "^3.6.5",
     "element-plus": "^1.0.2-beta.31",
-    "firebase": "^8.2.7",
+    "firebase": "^8.2.9",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1",
     "vue": "^3.0.0",
+    "vue-ctx": "^1.0.2",
     "vue-element-plus": "^2.13.14",
     "vue-router": "^4.0.0-0",
     "vue-stripe-elements-plus": "^0.3.2",
-    "vue3-apexcharts": "^1.2.1"
+    "vue3-apexcharts": "^1.2.1",
+    "vuefire": "^2.2.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
