@@ -47,47 +47,50 @@
                   </div>
                   <!-- 
                   <button @click="xaxisAddField" class="btn btn-primary btn-block" style="float:right">add another axis field</button> -->
+                  <div class="series-input form-group">
+                      <label for="y_data_0_Label">Y data Section Label</label>
+                      <input type="text" name="y_data_label" class="form-control" v-model="data.y_label" required>
 
-                  <div id="yaxis-input-0" class='col series-input form-group'>
-                    <label>Y Axis First Line/Series</label>
+                    <div id="yaxis-input-0" class='col form-group'>
+                      <label>Y Axis First Line/Series</label>
+                      
+                        <label for="y_data_0_Label">Y data series 1 label</label>
+                        <input type="text" name="y_data_0_Label" class="form-control" v-model="data.y_data[0].label" required>
+
+                        <label>Series 1 data</label>
+                        <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[0]" >
+                        <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[1]" >
+                        <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[2]" >
+                        <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[3]" >
+                        <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[4]" >
+                        <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[5]" >
+                        <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[6]" >
+                        <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[7]" >
+                        <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[8]" >
+                        <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[9]" >
+                    </div>
+
+
                     
-                      <label for="y_data_0_Label">Y data series 1 label</label>
-                      <input type="text" name="y_data_0_Label" class="form-control" v-model="data.y_data[0].label" required>
+                    <div id="yaxis-input-1" class='col form-group'>
+                      <label>Y Axis Second Line/Series</label>
 
-                      <label>Series 1 data</label>
-                      <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[0]" >
-                      <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[1]" >
-                      <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[2]" >
-                      <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[3]" >
-                      <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[4]" >
-                      <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[5]" >
-                      <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[6]" >
-                      <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[7]" >
-                      <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[8]" >
-                      <input type="text" class="form-control-sm" name="y_data[0]" v-model="data.y_data[0].data[9]" >
-                  </div>
+                        <label for="y_data_1_Label">Second line Label</label>
+                        <input type="text" name="y_data_1_Label" class="form-control" v-model="data.y_data[1].label" required>
 
-
-                  
-                  <div id="yaxis-input-1" class='col series-input form-group'>
-                    <label>Y Axis Second Line/Series</label>
-
-                      <label for="y_data_1_Label">Second line Label</label>
-                      <input type="text" name="y_data_1_Label" class="form-control" v-model="data.y_data[1].label" required>
-
-                      <label for="y_data[1]">Data</label>
-                      <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[0]" >
-                      <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[1]" >
-                      <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[2]" >
-                      <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[3]" >
-                      <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[4]" >
-                      <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[5]" >
-                      <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[6]" >
-                      <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[7]" >
-                      <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[8]" >
-                      <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[9]" >
-                  </div>
-
+                        <label for="y_data[1]">Data</label>
+                        <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[0]" >
+                        <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[1]" >
+                        <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[2]" >
+                        <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[3]" >
+                        <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[4]" >
+                        <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[5]" >
+                        <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[6]" >
+                        <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[7]" >
+                        <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[8]" >
+                        <input type="text" class="form-control-sm" name="y_data[1]" v-model="data.y_data[1].data[9]" >
+                    </div>
+                  </div> <!-- end of y axis section -->
                 </div>
             </div>
 
@@ -177,14 +180,19 @@ methods: {
       
       alert("Data added");
 
-      this.data.data_type = ''
-      this.data.title = ''
-      this.data.uid_source = ''
-      this.data.x_data = ''
-      this.data.x_label = ''
-      this.data.y_data[0].data = ''
-      this.data.y_label = ''
-      this.data.tags = ''
+      this.data.data_type = '';
+      this.data.title = '';
+      this.data.uid_source = '';
+      this.data.x_data = '';
+      this.data.x_label = '';
+      this.data.y_data[0].label = '';
+      this.data.y_data[1].label = '';
+      this.data.y_data[0].data = '';
+      this.data.y_data[1].data = ''
+      this.data.y_label = '';
+      this.data.tags = '';
+   
+
     }).catch((error) => {
       console.log(error);
     });

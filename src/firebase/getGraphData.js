@@ -7,7 +7,7 @@ async function getData(){
     
     console.log("getGraphData file accessed");
     
-    await db.collection('data').orderBy("title").get().then((snapshot)=>{
+    await db.collection('data').orderBy("title").limit(10).get().then((snapshot)=>{
         let snapData = [];
         snapshot.docChanges().forEach((change) => {
             let dbChange = change.type;
