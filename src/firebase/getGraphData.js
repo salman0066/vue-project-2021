@@ -20,7 +20,8 @@ async function getData(){
                     uid_source: change.doc.data().uid_source,
                     x_data: change.doc.data().x_data,
                     y_data: change.doc.data().y_data,
-                    x_label: change.doc.data().x_label
+                    x_label: change.doc.data().x_label,
+                    y_label: change.doc.data().y_label
                 });
                 // console.log("snapData",snapData);
             }

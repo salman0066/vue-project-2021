@@ -1,19 +1,19 @@
 <template>
+
 <el-row>
-  <el-col :offset="2" :span="24" style="background-color:beige">
-    <div>
-      <apexchart
-        width="500"
-        type="line"
-        :options="chartOptions"
-        :series="apexSeries"
-      ></apexchart>
-
-    </div>
-
+  <el-col :offset="1" :span="22">
+    <el-row>
+      <el-col class="singleGraph" :span=12 v-for="(fireData, index) in apexFirebaseMaster" :key="index">
+        <apexchart 
+          width=550 
+          type="line" 
+          :options="fireData.options" 
+          :series="fireData.series">
+        </apexchart>
+      </el-col>
+    </el-row>
   </el-col>
 </el-row>
-
 
   <!-- <div id="graphs" class="outerdiv" v-if="true">
     <div
@@ -100,14 +100,6 @@ export default {
       xaxis: {
         categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
       }
-      // ,
-      // legend: {
-      //   position: 'bottom',
-      //   horizontalAlign: 'center',
-      //   floating: true,
-      //   offsetY: 10, -------------------------- with legend, data gets cut off and squashed
-      //   offsetX: -5
-      // }
     });
 
     let apexSeries = [
@@ -128,51 +120,7 @@ export default {
       options: null,
       series: null,
       extra: null,
-    }); 
-
-    // let apexChartOptions = {
-    //   title: {
-    //     text: "",
-    //     align: "left"
-    //   },
-    //   chart: {
-    //     id: "",
-    //     dropShadow: {
-    //             enabled: true,
-    //             color: '#000',
-    //             top: 18,
-    //             left: 7,
-    //             blur: 10,
-    //             opacity: 0.2
-    //     },
-    //     toolbar: {
-    //       show: false /** can put 1/0 for true/false */
-    //     }
-    //   },
-    //   colors: [
-    //     '#259ffb',
-    //     '#25e6a6'
-    //     ],
-    //   dataLabels: {
-    //     enabled: true,
-    //   },
-    //   stroke: {
-    //     curve: 'smooth'
-    //   },
-    //   xaxis: {
-    //     categories: [],
-    //   }
-    // };
-    // let apexChartSeries = [
-    //   {
-    //     name: "",
-    //     data: [],
-    //   },
-    //   {
-    //     name: "",
-    //     data: [],
-    //   },
-    // ];
+    });
 
     console.log(apexFirebaseMaster, apexDetails, apexChartOptions, apexChartSeries);
 
@@ -193,7 +141,7 @@ export default {
         firebaseRecord.downloadable = false;
         // console.log(firebaseRecord);
         // console.log(firebaseRecord.downloadable);
-        
+        console.log(firebaseRecord.y_label)
         apexChartOptions = {
           title: {
             text: firebaseRecord.title +  " - " + firebaseRecord.data_type,
@@ -254,12 +202,12 @@ export default {
 
         apexFirebaseMaster.push(apexDetails);
 
-        console.log(apexChartOptions);
-        console.log(apexChartSeries);
-        console.log(apexChartExtra);
-        console.log(apexDetails);
-        console.log(apexFirebaseMaster);
-        console.log(apexFirebaseMaster.length);
+        // console.log(apexChartOptions);
+        // console.log(apexChartSeries);
+        // console.log(apexChartExtra);
+        // console.log(apexDetails);
+        // console.log(apexFirebaseMaster);
+        console.log(apexFirebaseMaster.length, apexFirebaseMaster[i].options);
       }
         
     });
@@ -274,17 +222,10 @@ export default {
 </script>
 
 <style scoped>
-.outerdiv {
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
 
-.innerdiv {
-  /* margin: 0 auto;
-  display: flex; */
-  background-color: cornflowerblue;
+.singleGraph{
+  margin-bottom:20px;
+  border-bottom:2px solid gainsboro
 }
 
 li{
