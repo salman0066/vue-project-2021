@@ -1,11 +1,14 @@
 <template>
 
   <div class="layout">
-    <appHeader :user="user" @logout="logout" />
+    <appHeader :user="user" />
 
-    <transition :name="transition" :mode="mode">
-      <router-view :user="user" @logout="logout" class="globalfont center" />
-    </transition>
+    <router-view :user="user.value" @logout="logout" class="globalfont center" v-slot="{Component}" >
+      <transition :name="transition" :mode="mode" >
+        <component :is="Component">
+        </component>
+      </transition>
+    </router-view>
 
     <appFooter></appFooter>
   </div>
@@ -29,13 +32,13 @@ export default {
     appHeader: header,
   },
   setup() {
-    const user = ref(null);
+    const user = ref("");
     const errorLogout = ref(null);
 
     firebaseAuthentication.onAuthStateChanged((currentUser) => {
       if (currentUser) {
         user.value = currentUser.email;
-        console.log(currentUser.email);
+        console.log(user.value);
       } else {
         user.value == null;
       }
@@ -48,6 +51,7 @@ export default {
         () => {
           user.value = null;
           router.push("login");
+          console.log("router.push=>login");
         },
         (error) => {
           errorLogout.value = error.message;
@@ -55,15 +59,16 @@ export default {
       );
     }
 
-	const transition = ref("fade");
-	const mode = ref("out-in");
-	router.beforeEach((to, from, next) => {
-		transition.value = "fade";
-		if(to.meta && to.meta.transition){
-			transition.value = to.meta.transition
-		}
-		next();
-	});
+    const transition = ref("fade");
+    const mode = ref("out-in");
+    
+    router.beforeEach((to, from, next) => {
+      transition.value = "fade";
+      if(to.meta && to.meta.transition){
+        transition.value = to.meta.transition
+      }
+      next();
+    });
 
     return {
       user,

@@ -2,11 +2,11 @@
   <div class="about">
     <h1>Your Account</h1>
   </div>
-  <body>
+  <body v-if="userDetails">
     <div class="profile">
       <div>
         <el-card class="box-card">
-          <div v-if="user">
+          <div>
             <div>
               Welcome Back
               <span style="color: green; font-weight: bold"> {{ userDetails.email }} </span>
@@ -96,12 +96,13 @@ export default {
 
 		//  const userId = firebaseAuthentication.currentUser;
 		const userDetails = ref(null);
-		console.log(firebaseAuthentication.currentUser.uid)
+		//console.log(firebaseAuthentication.currentUser.uid)
 
 		//  userDetails.value = firebaseFireStore.collection("users").doc(userId);
 
 		//  console.log(userDetails.value)
 		//testing if user is retrieved
+
 
 
 		const snapShotObject = firebaseFireStore.collection("users").doc(`${firebaseAuthentication.currentUser.uid}`)
@@ -122,9 +123,7 @@ export default {
 
 				}
 			},
-
 		);
-
 
 		watchEffect(onInvalidate => {
 			onInvalidate(() => unsub());
@@ -133,10 +132,10 @@ export default {
 		console.log(userDetails.value)
 		const email = ref("");
 		const username = ref("");
-		const fullName = ref("")
-		const institution = ref("")
-		const address = ref("")
-		const phoneNumber = ref("")
+		const fullName = ref("");
+		const institution = ref("");
+		const address = ref("");
+		const phoneNumber = ref("");
 		return {
 			email,
 			username,

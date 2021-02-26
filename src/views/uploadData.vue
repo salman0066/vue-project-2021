@@ -20,7 +20,7 @@
 
             <div class="form-group">
                 <label>User ID</label>
-                <input type="text" class="form-control" v-model="data.uid_source" required>
+                <input type="text" class="form-control" v-model="data.uid_source" required disabled="true" >
             </div>
 
             <div class="form-group">
@@ -124,7 +124,7 @@
 
 <script>
 //import {ref} from "vue";
-import { firebaseFireStore } from "@/firebase/database";
+import { firebaseFireStore, firebaseAuthentication } from "@/firebase/database";
 
 export default {
   data() {
@@ -145,8 +145,12 @@ export default {
     //       }
     //     ]
     // }
+
+    
     
     data: {
+      
+      userEmail: firebaseAuthentication.currentUser.email,
       x_data: [],
       y_data: [
         {
@@ -173,6 +177,7 @@ methods: {
     event.preventDefault();
     console.log("alex echo");
     console.log(this.data);
+    console.log(this.data.tags);
     firebaseFireStore.collection('data').add(this.data).then(() => {
       // setTimeout(()=>{
       //   showFirebaseMessage();
