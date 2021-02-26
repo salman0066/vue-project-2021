@@ -52,10 +52,10 @@ export default {
       const router = useRouter();
 
       function gotoLogin(){
-         router.push('register');
+         router.push('login');
       }
       function gotoRegister(){
-         router.push('login');
+         router.push('registration');
       }
 
       return{
