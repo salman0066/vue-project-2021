@@ -1,28 +1,33 @@
 import {ref} from 'vue';
 import {firebaseFireStore} from '@/firebase/database';
 let data = ref([]);
-async function getData(){
+async function getData(searchTerm){
 
     const db = firebaseFireStore;
     
     console.log("getGraphData file accessed");
     
-    await db.collection('data').orderBy("title").limit(10).get().then((snapshot)=>{
+    await db.collection('data').where("tags", "==", searchTerm).get().then((snapshot)=>{
         let snapData = [];
         snapshot.docChanges().forEach((change) => {
             let dbChange = change.type;
             if(dbChange == "added"){
-                snapData.push({
-                    data_type: change.doc.data().data_type,
-                    downloadable: change.doc.data().downloadable,
-                    tags: change.doc.data().tags,
-                    title: change.doc.data().title,
-                    uid_source: change.doc.data().uid_source,
-                    x_data: change.doc.data().x_data,
-                    y_data: change.doc.data().y_data,
-                    x_label: change.doc.data().x_label,
-                    y_label: change.doc.data().y_label
-                });
+                let docData = change.doc.data();
+                let docTags = docData.tags.split(",");
+                let tagsTrue = docTags.includes();
+                if(tagsTrue){
+                    snapData.push({
+                        data_type: docData.data_type,
+                        downloadable: docData.downloadable,
+                        tags: docData.tags,
+                        title: docData.title,
+                        uid_source: docData.uid_source,
+                        x_data: docData.x_data,
+                        y_data: docData.y_data,
+                        x_label: docData.x_label,
+                        y_label: docData.y_label
+                    });
+                }
                 // console.log("snapData",snapData);
             }
         });

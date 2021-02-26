@@ -6,6 +6,7 @@
         <!-- Username field -->
         <el-form-item label="Email: ">
           <el-input 
+          id="email"
           type="text"
           placeholder="Input username"
           required
@@ -72,7 +73,12 @@ export default {
         });
       }
 
-      return {email, password, errorFirebase, login};
+      return {
+          email, 
+          password, 
+          errorFirebase, 
+          login
+        };
       },
   };
 

@@ -6,7 +6,7 @@
       <div class="text-block">
          <el-row>
             <el-col style="text-align:justify" :span="24">
-               <b style="color:red" >myoCardio</b> is a website for sharing data associated with cardiomyopathies. 
+               <span class="attention-text" >myoCardio</span> is a website for sharing data associated with cardiomyopathies. 
                The website is primarily used by clinicians, cardiologists and medical investigators. 
                However, we welcome academic researchers, medical students or people with only an interest in cardiomyopathy data.
             </el-col>
@@ -17,11 +17,11 @@
       <div round v-if="!user" class="text-block">
          <el-row>
             <el-col @click="gotoRegister" :offset="1" :span="10" class="login-or-register">
-               If this is your first time 'Register' to get started!<br>
+               If this is your first time <span class="attention-text">Register</span> to get started!<br>
                <!-- <router-link :to="{ name: 'Registration'}"><span>Registration</span></router-link> -->
             </el-col>
             <el-col @click="gotoLogin" :offset="2" :span="10" class="login-or-register">
-               OR: 'Login' to your existing account<br>
+               OR: <span class="attention-text">Login</span> to your existing account<br>
                <!-- <router-link :to="{ name: 'Login'}"><span>Login</span></router-link> -->
             </el-col>
          </el-row>
@@ -91,6 +91,11 @@ export default {
 
 .login-or-register:hover{
    transform:scale(1.2);
+}
+
+.attention-text{
+   color:red !important;
+   font-weight:bold;
 }
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-<h4>{{apexFirebaseMaster.length}} Records found for {{userEmail}}</h4>
+<h2>{{apexFirebaseMaster.length}} Records found</h2>
 <el-row>
   <el-col :offset="1" :span="22">
     <el-row v-if="apexFirebaseMaster.length != 0">
@@ -22,18 +22,13 @@
 
 <script>
 import { ref, reactive } from "vue";
-import getData from '@/firebase/getMyGraphData';
-import {
-  firebaseAuthentication
-}
-from '@/firebase/database';
+import getData from '@/firebase/getGraphData';
 
 export default {
 
   setup() {
     'use strict';
-    
-    let userEmail = firebaseAuthentication.currentUser.email;
+
     const chartOptions = ref({
       title: {
         text: "wahoo chart options are cool",
@@ -176,7 +171,6 @@ export default {
       chartOptions,
       apexSeries,
       apexFirebaseMaster,
-      userEmail
     };
   },
 };
