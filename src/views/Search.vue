@@ -1,8 +1,6 @@
 <template>
   <div class="search">
     <h1>Search</h1>
-
-    <h2 class="header">Use this page to search all data</h2>
     <body>
       <div class="searchInput">
         <el-form @submit.prevent="populateReturns">

@@ -6,8 +6,9 @@
       <router-link style="float:left" v-bind:to="{ name: 'Home' }">Home</router-link>
       <router-link style="float:left" :to="{ name: 'About'}">About Us</router-link>
       <router-link style="float:left" :to="{ name: 'Search'}">Search</router-link>
-      <router-link style="float:left" round v-if="!user" :to="{ name: 'Registration'}">Registration</router-link>
-      <router-link style="float:left" round v-if="!user" :to="{ name: 'Login'}">Login</router-link>
+      <router-link style="float:right" round v-if="!user" :to="{ name: 'Login'}">Login</router-link>
+      <router-link style="float:right" round v-if="!user" :to="{ name: 'Registration'}">Registration</router-link>
+
       <div style="float:right" v-if="user" >
          <!-- Logged in (
             <span style = "color: white; font-weight: bold"> {{ user }} </span> )
@@ -28,18 +29,14 @@
             </div>
          </div>
       </div>
+
    </div>
 </template>
 
 <script>
 import {useRouter} from 'vue-router';
 export default {
-  props: {
-     user: {
-      type: Object,
-      default: () => {},
-    },
-  },
+  props: ['user'],
   emits: [
     'logout'
   ],

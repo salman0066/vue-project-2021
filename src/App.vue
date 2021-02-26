@@ -1,7 +1,7 @@
 <template>
 
   <div class="layout">
-    <appHeader :user="user" />
+    <appHeader :user="user" @logout="logout"/>
 
     <router-view :user="user.value" @logout="logout" class="globalfont center" v-slot="{Component}" >
       <transition :name="transition" :mode="mode" >
@@ -49,9 +49,8 @@ export default {
     function logout() {
       firebaseAuthentication.signOut().then(
         () => {
-          user.value = null;
           router.push("login");
-          console.log("router.push=>login");
+          user.value = null;
         },
         (error) => {
           errorLogout.value = error.message;
@@ -95,18 +94,6 @@ export default {
   color: #42b983;
 }
 
-.el-button {
-  width: 80%;
-  height: auto;
-  margin: 50px auto 0;
-  position: relative;
-  padding: 16px;
-  background-color: #ffff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  box-sizing: border-box;
-}
-
 .mainContent {
   margin: auto;
 }
@@ -131,6 +118,18 @@ export default {
 
 .zoom-leave-active {
   animation-direction: reverse;
+}
+
+.el-button {
+  width: 80%;
+  height: auto;
+  margin: 50px auto 0;
+  position: relative;
+  padding: 16px;
+  background-color: #ffff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
 }
 
 </style>

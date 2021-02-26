@@ -145,8 +145,6 @@ export default {
     //       }
     //     ]
     // }
-
-    
     
     data: {
       
