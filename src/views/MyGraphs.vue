@@ -1,8 +1,8 @@
 <template>
-
+<h4>{{apexFirebaseMaster.length}} Records found for {{userEmail}}</h4>
 <el-row>
   <el-col :offset="1" :span="22">
-    <el-row>
+    <el-row v-if="apexFirebaseMaster.length != 0">
       <el-col class="singleGraph" :span=12 v-for="(fireData, index) in apexFirebaseMaster" :key="index">
         <apexchart 
           width=550 
@@ -12,62 +12,28 @@
         </apexchart>
       </el-col>
     </el-row>
+    <el-row v-else>
+      No data - upload some data <router-link :to="{name: 'UploadData'}"><span>here</span></router-link>
+    </el-row>
   </el-col>
 </el-row>
 
-  <!-- <div id="graphs" class="outerdiv" v-if="true">
-    <div
-      i="graph"
-      class="innerdiv"
-      v-for="(fireData, index) in masterArray"
-      :key="index"
-    >
-      <p style="border: 0.5px solid black">apex => {{ fireData.categories }}</p>
-      <p>{{ fireData.categories[0] }}</p>
-      <p>{{ fireData.categories[1] }}</p>
-      <p>{{ fireData.categories[2] }}</p>
-
-      <apexchart
-        width="500"
-        type="bar"
-        :options="fireData"
-        :series="apexSeries"
-      ></apexchart>
-    </div> -->
-
-    <!-- <div
-      id="graph"
-      class="innerdiv"
-      v-for="(fire, index) in firestoreData"
-      :key="index"
-    >
-      <div>
-        <div>this will be a graph {{}} {{index + 1}}</div>
-        <h5>
-          <p>{{ fire.title }}</p>
-        </h5>
-        <p>{{ fire.x_name }}</p>
-        <p>{{ fire.y_name }}</p>
-        <p>x's: {{ fire.x_data[0] }}, {{ fire.x_data[1] }}</p>
-        <p>y's: => {{ fire.y_data }}</p>
-      </div>
-    </div> 
-  </div>-->
-<!-- 
-  <div v-else>
-    Your graphs will appear here once you have uploaded some data
-  </div> -->
 </template>
 
 <script>
 import { ref, reactive } from "vue";
-import getData from '@/firebase/getGraphData';
+import getData from '@/firebase/getMyGraphData';
+import {
+  firebaseAuthentication
+}
+from '@/firebase/database';
 
 export default {
+
   setup() {
   'use strict';
-
-  
+    
+    let userEmail = firebaseAuthentication.currentUser.email;
     const chartOptions = ref({
       title: {
         text: "wahoo chart options are cool",
@@ -122,13 +88,13 @@ export default {
       extra: null,
     });
 
-    console.log(apexFirebaseMaster, apexDetails, apexChartOptions, apexChartSeries);
+    //console.log(apexFirebaseMaster, apexDetails, apexChartOptions, apexChartSeries);
 
     let firebaseArray = [];
     let apexChartOptions; let apexChartSeries; let apexChartExtra; 
 
 
-    getData()
+    getData('alextesting@gmail.com')
     .then(result => {
       firebaseArray = result
     })
@@ -141,7 +107,7 @@ export default {
         firebaseRecord.downloadable = false;
         // console.log(firebaseRecord);
         // console.log(firebaseRecord.downloadable);
-        console.log(firebaseRecord.y_label)
+
         apexChartOptions = {
           title: {
             text: firebaseRecord.title +  " - " + firebaseRecord.data_type,
@@ -201,14 +167,8 @@ export default {
         }
 
         apexFirebaseMaster.push(apexDetails);
-
-        // console.log(apexChartOptions);
-        // console.log(apexChartSeries);
-        // console.log(apexChartExtra);
-        // console.log(apexDetails);
-        // console.log(apexFirebaseMaster);
-        console.log(apexFirebaseMaster.length, apexFirebaseMaster[i].options);
       }
+      // console.log(apexFirebaseMaster.length, apexFirebaseMaster);
         
     });
 
@@ -216,6 +176,7 @@ export default {
       chartOptions,
       apexSeries,
       apexFirebaseMaster,
+      userEmail
     };
   },
 };

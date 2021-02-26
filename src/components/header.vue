@@ -24,20 +24,33 @@
                <router-link  :to="{ name: 'MyAccount'}">My Account</router-link>
                <router-link  :to="{ name: 'MyGraphs'}">My Graphs</router-link>
                <router-link  :to="{ name: 'UploadData'}"> Add Data</router-link>
-               <a :to="{name: login}" @click="$emit('logout')">Logout</a>
+               <a @click="$emit('logout'); redirectToLogin">Logout</a>
             </div>
          </div>
       </div>
    </div>
 </template>
 
-  <script>
+<script>
+import {useRouter} from 'vue-router';
 export default {
   props: {
      user: {
       type: Object,
       default: () => {},
     },
+  },
+  emits: [
+    'logout'
+  ],
+  setup(){
+    let router = useRouter();
+    function redirectToLogin(){
+      router.push('login');
+    }
+    return{
+      redirectToLogin
+    }
   }
 }
 </script>
