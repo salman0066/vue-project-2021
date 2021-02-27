@@ -48,4 +48,17 @@ table{
   margin:5px;
 }
 
+tr, td{
+  padding-top:10px;
+  margin:20px;
+}
+tr{
+  box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+}
+tr:nth-child(even){
+  border-right:2px dotted grey;
+}
+tr:nth-child(odd){
+  border-right:2px dotted grey;
+}
 </style>

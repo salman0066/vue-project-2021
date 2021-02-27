@@ -1,23 +1,26 @@
-<template>
-  <el-row>
+<template >
+  <el-row v-on:keyup="checkCapsLock">
     <el-col :span="23" class="mainContent">
       <el-form ref="form" label-width="auto">
         <h2>Login</h2>
         <!-- Username field -->
         <el-form-item label="Email: ">
           <el-input
-            id="email"
+            id="emailInput"
             type="text"
             placeholder="Input username"
             required
             autocomplete="off"
             v-model="email"
+            
           ></el-input>
         </el-form-item>
+
 
         <!-- Password field -->
         <el-form-item label="Password: ">
           <el-input
+            id="passwordInput"
             type="password"
             placeholder="Input password"
             required
@@ -32,8 +35,15 @@
           </el-button>
         </el-form-item>
 
+        
+        <el-row id="capsLock">
+          <el-col :offset="4" :span="10">
+              <span style="color:red;font-size:10pt">Warning: Caps lock is on...</span>
+          </el-col>
+        </el-row>
+
         <el-form-item>
-          <el-button type="" @click="login">Login</el-button>
+          <el-button type="primary" @click="login">Login</el-button>
         </el-form-item>
       </el-form>
     </el-col>
@@ -54,8 +64,33 @@ export default {
     const password = ref("");
     const errorFirebase = ref(null);
 
-    const router = useRouter();
+    function checkCapsLock(){
+      const capsLock = document.getElementById('capsLock');
+      const emailInput = document.getElementById('emailInput');
+      emailInput.addEventListener("keyup", (e) => {
+        if(e.getModifierState("CapsLock")){
+          capsLock.style.display = "block";
+        }
+        else{
+          capsLock.style.display = "none";
+        }
+      });
+      const passwordInput = document.getElementById('passwordInput');
+      passwordInput.addEventListener("keyup", (e) => {
+        if(e.getModifierState("CapsLock")){
+          capsLock.style.display = "block";
+        }
+        else{
+          capsLock.style.display = "none";
+        }
+      });
+    }
 
+
+
+    const router = useRouter();
+    
+    
     function login() {
       const info = {
         email: email.value,
@@ -79,6 +114,7 @@ export default {
       password,
       errorFirebase,
       login,
+      checkCapsLock
     };
   },
 };
@@ -116,5 +152,10 @@ export default {
   .container {
     padding: 25px;
     background-color: lightblue;
+  }
+
+  #capsLock{
+    margin:30px;
+    display:none;
   }
 </style>
