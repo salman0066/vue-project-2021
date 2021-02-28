@@ -7,22 +7,22 @@
           <tr>
             <td>Bilaal</td>
             <td><a href="https://teams.microsoft.com/l/chat/0/0?users=BILAAL.MUSA@stu.mmu.ac.uk">MSTeams</a></td>
-            <td></td>
+            <td><a href="mailto:BILAAL.MUSA@stu.mmu.ac.uk">email</a></td>
             </tr>
           <tr>
             <td>Alex</td>
             <td><a href="https://teams.microsoft.com/l/chat/0/0?users=ALEX.BERRIDGE@stu.mmu.ac.uk">MSTeams</a></td>
-            <td></td>
+            <td><a href="mailto:ALEX.BERRIDGE@stu.mmu.ac.uk">email</a></td>
           </tr>
           <tr>
             <td>Salman</td>
             <td><a href="https://teams.microsoft.com/l/chat/0/0?users=MUHAMMAD.S.KHAN5@stu.mmu.ac.uk">MSTeams</a></td>
-            <td></td>
+            <td><a href="mailto:MUHAMMAD.S.KHAN5@stu.mmu.ac.uk">email</a></td>
           </tr>
           <tr>
             <td>Vikki</td>
             <td><a href="https://teams.microsoft.com/l/chat/0/0?users=VICTORIA.E.HANLEY@stu.mmu.ac.uk">MSTeams</a></td>
-            <td></td>
+            <td><a href="mailto:VICTORIA.E.HANLEY@stu.mmu.ac.uk">email</a></td>
           </tr>
         </table>
       </el-col>
