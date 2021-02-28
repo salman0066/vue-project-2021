@@ -19,7 +19,8 @@
 
         <!-- Password field -->
         <el-form-item label="Password: ">
-          <el-input
+          <el-input 
+            @keyup.enter="login()"
             id="passwordInput"
             type="password"
             placeholder="Input password"
@@ -86,12 +87,11 @@ export default {
       });
     }
 
-
-
     const router = useRouter();
     
     
     function login() {
+
       const info = {
         email: email.value,
         password: password.value,
