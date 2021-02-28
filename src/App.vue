@@ -3,7 +3,7 @@
   <div class="layout">
     <appHeader :user="user" @logout="logout"/>
 
-    <router-view :user="user.value" @logout="logout" class="globalfont center" v-slot="{Component}" >
+    <router-view :user="user" @logout="logout" class="globalfont center" v-slot="{Component}"  >
       <transition :name="transition" :mode="mode" >
         <component :is="Component">
         </component>

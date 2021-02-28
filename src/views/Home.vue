@@ -12,8 +12,6 @@
             </el-col>
          </el-row>
       </div>
-
-      
       <div round v-if="!user" class="text-block">
          <el-row>
             <el-col @click="gotoRegister" :offset="1" :span="10" class="login-or-register">
@@ -25,10 +23,7 @@
                <!-- <router-link :to="{ name: 'Login'}"><span>Login</span></router-link> -->
             </el-col>
          </el-row>
-
          <h3>
-
-
          </h3>
       </div>
    </div>
