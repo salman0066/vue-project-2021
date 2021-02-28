@@ -7,7 +7,7 @@
       <router-link style="float:left" :to="{ name: 'About'}">About Us</router-link>
       <router-link style="float:left" :to="{ name: 'Search'}">Search</router-link>
       <router-link style="float:right" round v-if="!user" :to="{ name: 'Login'}">Login</router-link>
-      <router-link style="float:right" round v-if="!user" :to="{ name: 'Registration'}">Registration</router-link>
+      <router-link style="float:right" round v-if="!user" :to="{ name: 'Registration'}">Register</router-link>
 
       <div style="float:right" v-if="user" >
          <!-- Logged in (
