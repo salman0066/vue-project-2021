@@ -19,10 +19,9 @@ async function getData(uid){
                     tags: docData.tags,
                     title: docData.title,
                     uid_source: docData.uid_source,
-                    x_data: docData.x_data,
-                    y_data: docData.y_data,
                     x_label: docData.x_label,
-                    y_label: docData.y_label
+                    y_label: docData.y_label,
+                    series: docData.series
                 });
                 // console.log("snapData",snapData);
             }

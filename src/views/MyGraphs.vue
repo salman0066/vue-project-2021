@@ -1,5 +1,5 @@
 <template>
-<h4>{{apexFirebaseMaster.length}} Records found for {{userEmail}}</h4>
+<h2>{{apexFirebaseMaster.length}} Records found</h2>
 <el-row>
   <el-col :offset="1" :span="22">
     <el-row v-if="apexFirebaseMaster.length != 0">
@@ -21,63 +21,13 @@
 </template>
 
 <script>
-import { ref, reactive } from "vue";
-import getData from '@/firebase/getMyGraphData';
-import {
-  firebaseAuthentication
-}
-from '@/firebase/database';
+import { reactive } from "vue";
+import getData from '@/firebase/getGraphData';
 
 export default {
 
   setup() {
     'use strict';
-    
-    let userEmail = firebaseAuthentication.currentUser.email;
-    const chartOptions = ref({
-      title: {
-        text: "wahoo chart options are cool",
-        align: "left"
-      },
-      chart: {
-        id: "barchart-example",
-        dropShadow: {
-                enabled: true,
-                color: '#000',
-                top: 18,
-                left: 7,
-                blur: 10,
-                opacity: 0.2
-        },
-        toolbar: {
-          show: false /** can put 1/0 for true/false */
-        }
-      },
-      colors: [
-        '#259ffb',
-        '#25e6a6'
-        ],
-      dataLabels: {
-        enabled: true,
-      },
-      stroke: {
-        curve: ['smooth','stepline', 'straight'] /** or curve: '<line-type>' */
-      },
-      xaxis: {
-        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
-      }
-    });
-
-    let apexSeries = [
-      {
-        name: "data 1",
-        data: [30, 40, 35, 66, 77, 88, 99, 20],
-      },
-      {
-        name: "data 2",
-        data: [1,6,3,44,6,0,7,100],
-      },
-    ];
 
     let apexFirebaseMaster = reactive([
       // an "apexChartDetails" for each record in firebase
@@ -94,9 +44,9 @@ export default {
     let apexChartOptions; let apexChartSeries; let apexChartExtra; 
 
 
-    getData('alextesting@gmail.com')
+    getData()
     .then(result => {
-      firebaseArray = result
+      firebaseArray = result;
     })
     .then(()=> {
       let firebaseRecord = null;
@@ -110,7 +60,7 @@ export default {
 
         apexChartOptions = {
           title: {
-            text: firebaseRecord.title +  " - " + firebaseRecord.data_type,
+            text: firebaseRecord.title +  " - Gene Type: " + firebaseRecord.data_type,
             align: "left"
           },
           chart: {
@@ -139,7 +89,7 @@ export default {
           },
           xaxis: {
             title: { text: firebaseRecord.x_label },
-            categories: firebaseRecord.x_data,
+            type: 'numeric'
           },
           yaxis: {
             title: { text: firebaseRecord.y_label},
@@ -147,12 +97,12 @@ export default {
         }; /**end of chartOptions */
         apexChartSeries = [
           {
-            name: firebaseRecord.y_data[0].label,
-            data: firebaseRecord.y_data[0].data,
+            name: firebaseRecord.series[0].label,
+            data: firebaseRecord.series[0].data,
           },
           {
-            name: firebaseRecord.y_data[1].label,
-            data: firebaseRecord.y_data[1].data,
+            name: firebaseRecord.series[1].label,
+            data: firebaseRecord.series[1].data,
           },
         ]; /**end of chartSeries */
         apexChartExtra = {
@@ -173,10 +123,7 @@ export default {
     });
 
     return {
-      chartOptions,
-      apexSeries,
       apexFirebaseMaster,
-      userEmail
     };
   },
 };

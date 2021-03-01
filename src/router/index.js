@@ -47,7 +47,17 @@ const routes = [
     path:'/upload_data',
     name: 'UploadData',
     component: () => import('@/views/uploadData.vue')
-  }
+  },
+  {
+    path:'/data',
+    name: 'GraphData',
+    component: () => import('@/views/Data.vue')
+  },
+  {
+    path:'/data_by_tags',
+    name: 'DataByTags',
+    component: () => import('@/views/DataByTags.vue')
+  },
 ];
 
 const router = createRouter({
