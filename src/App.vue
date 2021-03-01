@@ -3,11 +3,7 @@
   <div class="layout">
     <appHeader :user="user" @logout="logout"/>
 
-    <router-view :user="user" @logout="logout" class="globalfont center" v-slot="{Component}"  >
-      <transition :name="transition" :mode="mode" >
-        <component :is="Component">
-        </component>
-      </transition>
+    <router-view :user="user" @logout="logout" class="globalfont center" >
     </router-view>
 
     <appFooter></appFooter>
@@ -58,22 +54,9 @@ export default {
       );
     }
 
-    const transition = ref("fade");
-    const mode = ref("out-in");
-    
-    router.beforeEach((to, from, next) => {
-      transition.value = "fade";
-      if(to.meta && to.meta.transition){
-        transition.value = to.meta.transition
-      }
-      next();
-    });
-
     return {
       user,
       logout,
-      mode,
-      transition,
     };
   },
 };
