@@ -6,6 +6,8 @@
       <router-link style="float:left" v-bind:to="{ name: 'Home' }">Home</router-link>
       <router-link style="float:left" :to="{ name: 'About'}">About Us</router-link>
       <router-link style="float:left" :to="{ name: 'Search'}">Search</router-link>
+      <router-link style="float:left" :to="{ name: 'GraphData'}">Data</router-link>
+      <router-link style="float:left" :to="{ name: 'DataByTags'}">By Tags</router-link>  
       <router-link style="float:right" round v-if="!user" :to="{ name: 'Login'}">Login</router-link>
       <router-link style="float:right" round v-if="!user" :to="{ name: 'Registration'}">Register</router-link>
 
@@ -88,7 +90,7 @@ export default {
   margin: 0;
 }
 
-#nav a:hover,.dropdown:hover .dropbtn {
+#nav a:hover, .dropdown:hover .dropbtn {
   background-color: #7e2023;
 }
 
