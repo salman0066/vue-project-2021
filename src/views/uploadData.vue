@@ -4,8 +4,8 @@
         <form @submit.prevent="onFormSubmit">
           <div class= "addDataForm">
             <div class="form-group">
-                <label>Gene Type</label>
-                <select class="form-control" v-model="data.data_type" required>
+                <label for="geneSelect">Gene Type</label>
+                <select class="form-control" name="geneSelect" v-model="data.data_type" required>
                   <option>TNNT</option>
                   <option>MYH</option>
                   <option>MYBPC3</option>
@@ -150,6 +150,11 @@ export default {
         }
       ]
     }
+
+    // data: {
+
+      
+    // }
 
 
   }
