@@ -1,7 +1,9 @@
 <template>
 <el-row>
   <el-col :span="23" class="mainContent">
-    <el-form ref="form" label-width="auto">
+    <el-form ref="form" label-width="auto"
+      @keyup.enter="register()"
+    >
       <h2>Register</h2>
       <!-- Email field -->
       <el-form-item label="** Email: ">
@@ -147,7 +149,7 @@ export default {
 
       const register = async () => {
         const info = {
-          email: email.value,
+          email: email.value.toLowerCase(),
           password: password.value,
           fullName: fullName.value,
           institution: institution.value,

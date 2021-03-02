@@ -69,8 +69,9 @@
 
                     <el-row>
                       <el-col :span=24>
+
                       <label for="series2title">Series 2 title</label>
-                      <input type="text" name="series2title" class="form-control" v-model="data.series[0].label"></el-col>
+                      <input type="text" name="series2title" class="form-control" v-model="data.series[1].label"></el-col>
                       <el-col :span="12">
                     <div id="yaxis-input-0" class='col form-group'>
                       

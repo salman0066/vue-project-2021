@@ -1,7 +1,9 @@
 <template >
   <el-row v-on:keyup="checkCapsLock">
     <el-col :span="23" class="mainContent">
-      <el-form ref="form" label-width="auto">
+      <el-form ref="form" label-width="auto"
+        @keyup.enter="login()"
+      >
         <h2>Login</h2>
         <!-- Username field -->
         <el-form-item label="Email: ">
@@ -20,7 +22,6 @@
         <!-- Password field -->
         <el-form-item label="Password: ">
           <el-input 
-            @keyup.enter="login()"
             id="passwordInput"
             type="password"
             placeholder="Input password"
