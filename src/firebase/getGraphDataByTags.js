@@ -1,11 +1,11 @@
 import {ref} from 'vue';
 import {firebaseFireStore} from '@/firebase/database';
 let data = ref([]);
-async function getData(searchTerm){
-
+async function getDataByTag(searchTerm){
+    searchTerm = searchTerm.trim();
     const db = firebaseFireStore;
     
-    console.log("getGraphData file accessed");
+    console.log("getGraphData file accessed", "SeachTerm: ", searchTerm);
     
     await db.collection('data')/*.where("tags", "==", searchTerm)*/.get().then((snapshot)=>{
         let snapData = [];
@@ -15,6 +15,7 @@ async function getData(searchTerm){
                 let docData = change.doc.data();
                 let docTags = docData.tags.split(",");
                 let tagsTrue = docTags.includes(searchTerm);
+                // console.log(tagsTrue);
                 if(tagsTrue){
                     snapData.push({
                         data_type: docData.data_type,
@@ -22,8 +23,7 @@ async function getData(searchTerm){
                         tags: docData.tags,
                         title: docData.title,
                         uid_source: docData.uid_source,
-                        x_data: docData.x_data,
-                        y_data: docData.y_data,
+                        series: docData.series,
                         x_label: docData.x_label,
                         y_label: docData.y_label
                     });
@@ -40,4 +40,4 @@ async function getData(searchTerm){
 
   }
 
-  export default getData;
+  export default getDataByTag;

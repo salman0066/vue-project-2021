@@ -1,5 +1,5 @@
 <template>
-<h2>{{apexFirebaseMaster.length}} Records found</h2>
+<h2>{{apexFirebaseMaster.length}} Records found for {{user}}</h2>
 <el-row>
   <el-col :offset="1" :span="22">
     <el-row v-if="apexFirebaseMaster.length != 0">
@@ -10,7 +10,9 @@
           :options="fireData.options" 
           :series="fireData.series">
         </apexchart>
+        <p>identification: {{fireData.extra}}</p>
       </el-col>
+
     </el-row>
     <el-row v-else>
       No data - upload some data <router-link :to="{name: 'UploadData'}"><span>here</span></router-link>
@@ -22,11 +24,16 @@
 
 <script>
 import { reactive } from "vue";
-import getData from '@/firebase/getGraphData';
+import getData from '@/firebase/getMyGraphData';
 
 export default {
-
-  setup() {
+  props: ['user'],
+  data: function(){
+    return{
+      currentUser: this.user
+    }
+  },
+  setup(props) {
     'use strict';
 
     let apexFirebaseMaster = reactive([
@@ -44,7 +51,7 @@ export default {
     let apexChartOptions; let apexChartSeries; let apexChartExtra; 
 
 
-    getData()
+    getData(props)
     .then(result => {
       firebaseArray = result;
     })
@@ -55,7 +62,7 @@ export default {
       for(let i = 0; i<firebaseArray.length; i++){
         firebaseRecord = firebaseArray[i];
         firebaseRecord.downloadable = false;
-        // console.log(firebaseRecord);
+        console.log(firebaseRecord);
         // console.log(firebaseRecord.downloadable);
 
         apexChartOptions = {
@@ -107,7 +114,8 @@ export default {
         ]; /**end of chartSeries */
         apexChartExtra = {
           tags: firebaseRecord.tags,
-          uid_source: firebaseRecord.uid_source
+          uid_source: firebaseRecord.uid_source,
+          id: firebaseRecord.id
         }
 
         apexDetails = {
@@ -115,7 +123,6 @@ export default {
           series: apexChartSeries,
           extra: apexChartExtra
         }
-
         apexFirebaseMaster.push(apexDetails);
       }
       // console.log(apexFirebaseMaster.length, apexFirebaseMaster);

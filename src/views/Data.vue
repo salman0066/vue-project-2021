@@ -95,7 +95,7 @@ export default {
             title: { text: firebaseRecord.y_label},
           }
         }; /**end of chartOptions */
-        console.log(firebaseRecord);
+
         apexChartSeries = [
           {
             name: firebaseRecord.series[0].label,
@@ -106,6 +106,7 @@ export default {
             data: firebaseRecord.series[1].data,
           },
         ]; /**end of chartSeries */
+
         apexChartExtra = {
           tags: firebaseRecord.tags,
           uid_source: firebaseRecord.uid_source
@@ -120,7 +121,6 @@ export default {
         apexFirebaseMaster.push(apexDetails);
       }
       // console.log(apexFirebaseMaster.length, apexFirebaseMaster);
-        
     });
 
     return {

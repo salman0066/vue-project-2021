@@ -1,19 +1,17 @@
 import {ref} from 'vue';
 import {firebaseFireStore} from '@/firebase/database';
 let data = ref([]);
-async function getData(uid){
-
+async function getData(auth){
     const db = firebaseFireStore;
     
-    console.log("getGraphData file accessed", uid);
-    
-    await db.collection('data').where('uid_source', '==', uid).orderBy('title').get().then((snapshot)=>{
+    await db.collection('data').where('uid_source', '==', auth.user).get().then((snapshot)=>{
         let snapData = [];
         snapshot.docChanges().forEach((change) => {
             let dbChange = change.type;
             if(dbChange == "added"){
                 let docData = change.doc.data();
                 snapData.push({
+                    id: change.doc.id,
                     data_type: docData.data_type,
                     downloadable: docData.downloadable,
                     tags: docData.tags,
@@ -32,7 +30,5 @@ async function getData(uid){
     });
     // console.log("before return ",data.value);
     return data.value;
-
   }
-
   export default getData;
