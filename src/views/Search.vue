@@ -15,17 +15,17 @@
 
             <div>
               <p>Search for these ids</p>
-             (115197)
-             (208754)
-             (616117)
-             (212130)
-             (115200)
-             (612158) 
-             (600884)
-             (612877)
-             (601493)
-             (613122)
-             (601494)
+             (192600 for Cardiomyopathy, Familial Hypertrophic)
+             (618052 for Cardiomyopathy, Familial Hypertrophic 27)
+             (608758 for Cardiomyopathy, Familial Hypertrophic, 10)
+             (612098 for Cardiomyopathy, Familial Hypertrophic, 11)
+             (612124 for Cardiomyopathy, Familial Hypertrophic, 12)
+             (115210 for Cardiomyopathy, Familial Restrictive 1) 
+             (612422 for Cardiomyopathy, Familial Restrictive 2)
+             (612877 for Cardiomyopathy, Dilated,1bb)
+             (601493 for Cardiomyopathy, Dilated,1c)
+             (613122 for Cardiomyopathy, Dilated,1cc)
+             (601494 for Cardiomyopathy, Dilated,1d)
             </div>
           </el-form-item>
         </el-form>
