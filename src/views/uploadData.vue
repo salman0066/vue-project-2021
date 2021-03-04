@@ -15,21 +15,21 @@
 
             <div class="form-group">
                 <label>Chart Title</label>
-                <input type="text" class="form-control" v-model="data.title" required>
+                <input type="text" class="form-control" v-model="data.title" placeholder="...overall title of the graph, will appear above it as a heading" required>
             </div>
 
             <div class="form-group">
                 <label>Tags</label>
-                <input type="text" class="form-control" v-model="data.tags" placeholder="TNNT,GraphData,SharingIsCaring" required>
+                <input type="text" class="form-control" v-model="data.tags" placeholder="...ie: TNNT,GraphData,Research - tags separated by a comma, no spaces or hashtag ('#')" required>
             </div>
             <el-row>
               <el-col :span=12>
                 <label for="">X axis label</label>
-                <input type="text" class="form-control" name="" v-model="data.x_label" required>
+                <input type="text" class="form-control" name="" v-model="data.x_label" placeholder="...label for the bottom xaxis (horizontal)" required>
               </el-col>
               <el-col :span=12>
                 <label for="">Y axis label</label>
-                <input type="text" class="form-control" name="" v-model="data.y_label" required>
+                <input type="text" class="form-control" name="" v-model="data.y_label" placeholder="...label for the left yaxis (verticle)" required>
               </el-col>
             </el-row>
 
@@ -40,7 +40,7 @@
                       <el-row>
                         <el-col :span=24>
                           <label for="series1title">Series 1 title</label>
-                          <input type="text" name="series1title" class="form-control" v-model="data.series[0].label" required>
+                          <input type="text" name="series1title" class="form-control" v-model="data.series[0].label" placeholder="...subject of the first line data" required>
                         </el-col>
                       </el-row>
                       <el-row>
@@ -66,7 +66,7 @@
                       <el-row>
                         <el-col :span=24>
                          <label for="series2title">Series 2 title</label>
-                        <input type="text" name="series2title" class="form-control" v-model="data.series[1].label">
+                        <input type="text" name="series2title" class="form-control" v-model="data.series[1].label" placeholder="...subject of the second line data">
                         </el-col>
                       </el-row>
                       <el-row>
@@ -148,8 +148,6 @@ export default {
     }
 
     // data: {
-
-      
     // }
 
 
@@ -176,12 +174,12 @@ methods: {
       this.data.data_type = '';
       this.data.title = '';
       this.data.uid_source = '';
-      this.data.series[0] = '';
-      this.data.series[1] = '';
+      this.data.series = [{label: "", data:[{},{},{},{},{},{}]},{label: "", data:[{},{},{},{},{},{}]}]
       this.data.y_label = '';
       this.data.x_label = '';
       this.data.tags = '';
-   
+
+      document.documentElement.scrollTop = 0;
 
     }).catch((error) => {
       console.log(error);

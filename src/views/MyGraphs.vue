@@ -10,7 +10,15 @@
           :options="fireData.options" 
           :series="fireData.series">
         </apexchart>
-        <p>identification: {{fireData.extra}}</p>
+        <el-row style="margin:20px">
+          <el-col :span=12>
+            <i>Tagged: </i>{{fireData.extra.tags}}
+          </el-col>
+          <el-col :span=12>
+            <button @click="deleteMyGraph(fireData.extra.id)">Delete</button>
+          </el-col>
+        </el-row>
+        
       </el-col>
 
     </el-row>
@@ -25,16 +33,14 @@
 <script>
 import { reactive } from "vue";
 import getData from '@/firebase/getMyGraphData';
+import {useRouter} from 'vue-router';
+import {firebaseFireStore as db} from '@/firebase/database';
 
 export default {
   props: ['user'],
-  data: function(){
-    return{
-      currentUser: this.user
-    }
-  },
   setup(props) {
     'use strict';
+    let router = useRouter();
 
     let apexFirebaseMaster = reactive([
       // an "apexChartDetails" for each record in firebase
@@ -47,89 +53,101 @@ export default {
 
     //console.log(apexFirebaseMaster, apexDetails, apexChartOptions, apexChartSeries);
 
-    let firebaseArray = [];
     let apexChartOptions; let apexChartSeries; let apexChartExtra; 
 
+    function getPageData(){
+    let firebaseArray = [];
+      getData(props)
+      .then(result => {
+        console.log(result);
+        firebaseArray = result;
+      })
+      .then(()=> {
+        let firebaseRecord = null;
+        /**sort "data" from firebase into presentable data for the apex charts */
+        console.log("fba.l:", firebaseArray);
+        for(let i = 0; i<firebaseArray.length; i++){
+          firebaseRecord = firebaseArray[i];
+          firebaseRecord.downloadable = false;
+          // console.log(firebaseRecord);
 
-    getData(props)
-    .then(result => {
-      firebaseArray = result;
-    })
-    .then(()=> {
-      let firebaseRecord = null;
-      /**sort "data" from firebase into presentable data for the apex charts */
-
-      for(let i = 0; i<firebaseArray.length; i++){
-        firebaseRecord = firebaseArray[i];
-        firebaseRecord.downloadable = false;
-        console.log(firebaseRecord);
-        // console.log(firebaseRecord.downloadable);
-
-        apexChartOptions = {
-          title: {
-            text: firebaseRecord.title +  " - Gene Type: " + firebaseRecord.data_type,
-            align: "left"
-          },
-          chart: {
-            id: firebaseRecord.title,
-            dropShadow: {
-                    enabled: true,
-                    color: '#000',
-                    top: 18,
-                    left: 7,
-                    blur: 10,
-                    opacity: 0.2
+          apexChartOptions = {
+            title: {
+              text: firebaseRecord.title +  " - Gene Type: " + firebaseRecord.data_type,
+              align: "left"
             },
-            toolbar: {
-              show: firebaseRecord.downloadable /** can put 1/0 for true/false */
+            chart: {
+              id: firebaseRecord.title,
+              dropShadow: {
+                      enabled: true,
+                      color: '#000',
+                      top: 18,
+                      left: 7,
+                      blur: 10,
+                      opacity: 0.2
+              },
+              toolbar: {
+                show: firebaseRecord.downloadable /** can put 1/0 for true/false */
+              }
+            },
+            colors: [
+              '#259ffb',
+              '#25e6a6'
+              ],
+            dataLabels: {
+              enabled: true,
+            },
+            stroke: {
+              curve: 'smooth'
+            },
+            xaxis: {
+              title: { text: firebaseRecord.x_label },
+              type: 'numeric'
+            },
+            yaxis: {
+              title: { text: firebaseRecord.y_label},
             }
-          },
-          colors: [
-            '#259ffb',
-            '#25e6a6'
-            ],
-          dataLabels: {
-            enabled: true,
-          },
-          stroke: {
-            curve: 'smooth'
-          },
-          xaxis: {
-            title: { text: firebaseRecord.x_label },
-            type: 'numeric'
-          },
-          yaxis: {
-            title: { text: firebaseRecord.y_label},
+          }; /**end of chartOptions */
+          apexChartSeries = [
+            {
+              name: firebaseRecord.series[0].label,
+              data: firebaseRecord.series[0].data,
+            },
+            {
+              name: firebaseRecord.series[1].label,
+              data: firebaseRecord.series[1].data,
+            },
+          ]; /**end of chartSeries */
+          apexChartExtra = {
+            tags: firebaseRecord.tags,
+            uid_source: firebaseRecord.uid_source,
+            id: firebaseRecord.id
           }
-        }; /**end of chartOptions */
-        apexChartSeries = [
-          {
-            name: firebaseRecord.series[0].label,
-            data: firebaseRecord.series[0].data,
-          },
-          {
-            name: firebaseRecord.series[1].label,
-            data: firebaseRecord.series[1].data,
-          },
-        ]; /**end of chartSeries */
-        apexChartExtra = {
-          tags: firebaseRecord.tags,
-          uid_source: firebaseRecord.uid_source,
-          id: firebaseRecord.id
-        }
 
-        apexDetails = {
-          options: apexChartOptions,
-          series: apexChartSeries,
-          extra: apexChartExtra
+          apexDetails = {
+            options: apexChartOptions,
+            series: apexChartSeries,
+            extra: apexChartExtra
+          }
+          apexFirebaseMaster.push(apexDetails);
         }
-        apexFirebaseMaster.push(apexDetails);
-      }
-      // console.log(apexFirebaseMaster.length, apexFirebaseMaster);
-        
-    });
+        console.log(apexFirebaseMaster.length, apexFirebaseMaster);
+          
+      });
+    }
+
+    async function deleteMyGraph(graphId){
+        await db.collection('data').doc(graphId).delete().then(()=>{
+        alert("Record deleted");
+        router.push('/');
+      });
+    }
+
+    
+    getPageData();
 
     return {
+      deleteMyGraph,
       apexFirebaseMaster,
     };
   },
