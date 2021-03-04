@@ -1,0 +1,239 @@
+<template>
+    <div class="addData">
+      <h1>Add Data</h1>
+        <form @submit.prevent="onFormSubmit">
+          <div class= "addDataForm">
+            <div class="form-group">
+                <label for="geneSelect">Gene Type</label>
+                <select class="form-control" name="geneSelect" v-model="data.data_type" required>
+                  <option>TNNT</option>
+                  <option>MYH</option>
+                  <option>MYBPC3</option>
+                  <option>TPM1</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Chart Title</label>
+                <input type="text" class="form-control" v-model="data.title" required>
+            </div>
+
+            <div class="form-group">
+                <label>Tags</label>
+                <input type="text" class="form-control" v-model="data.tags" required>
+            </div>
+            <el-row>
+              <el-col :span=12>
+                <label for="">X axis label</label>
+                <input type="text" class="form-control" name="" v-model="data.x_label" required>
+              </el-col>
+              <el-col :span=12>
+                <label for="">Y axis label</label>
+                <input type="text" class="form-control" name="" v-model="data.y_label" required>
+              </el-col>
+            </el-row>
+
+            <div class="container">
+                <div class="row form-group">
+                  <el-row>
+                    <el-col :span="24" id="xaxis-input" class='col series-input' >
+                      <el-row>
+                        <el-col :span=24>
+                          <label for="series1title">Series 1 title</label>
+                          <input type="text" name="series1title" class="form-control" v-model="data.series[0].label" required>
+                        </el-col>
+                      </el-row>
+                      <el-row>
+                        <el-col :span="12">
+                          <label>Series 1 x data</label>
+                          <input type="text" class="form-control-sm" v-model="series1Data" >
+                        </el-col>
+                      </el-row>
+                    </el-col>
+                  </el-row>
+                  <!-- 
+                  <button @click="xaxisAddField" class="btn btn-primary btn-block" style="float:right">add another axis field</button> -->
+                  <div class="series-input form-group">
+                    <el-row>
+                      <el-col :span=24>
+                        <label for="series2title">Series 2 title</label>
+                        <input type="text" name="series2title" class="form-control" v-model="data.series[1].label">
+                      </el-col>
+                      <el-col :span="12">
+                        <div id="yaxis-input-0" class='col form-group'>
+                          <label>Series 2 x data</label>
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[0].x" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[1].x" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[2].x" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[3].x" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[4].x" >
+                        </div>
+                      </el-col>
+                      <el-col :span="12">
+                        <div id="yaxis-input-1" class='col form-group'>
+                          <label>Series 2 y data</label>
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[0].y" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[1].y" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[2].y" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[3].y" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[4].y" >
+                        </div>
+                      </el-col>
+                    </el-row>
+                  </div> <!-- end of y axis section -->
+                  
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary btn-block">Add Data</button>
+            </div>
+          </div>
+        </form>
+      <!-- end h1 title -->
+    </div> <!-- end of form -->
+
+    <div id="firebaseResult" hidden=true>
+      <el-row style="background-color:blue">
+        <el-col style="background-color: aqua" :offset="20" :span="4">
+
+          <button>hello</button>
+          
+            <!-- <v-alert
+              :type="success"
+              :border="left"
+              :elevation="5"
+              colored-border
+              color="deep-purple accent-4"
+            >
+            alert text
+            </v-alert> -->
+      
+        </el-col>
+      </el-row>
+    </div>
+</template>
+
+<script>
+//import {ref} from "vue";
+import { firebaseFireStore, firebaseAuthentication } from "@/firebase/database";
+
+export default {
+  data() {
+    return {
+      data: {
+        x_data: [],
+        series: [
+          {
+            label: "",
+            data: "[{x:12,y:21},{x:13,y:24},{x:32,y:25},{x:32,y:26},{x:32,y:28}]",
+          },
+          {
+            label: "",
+            data: [{},{},{},{},{}]
+          }
+        ]
+      },
+
+      series1Data: "[{x:12,y:21},{x:13,y:24},{x:32,y:25},{x:32,y:26},{x:32,y:28}]",
+      series2Data: ""
+
+    // data: {
+
+    // }
+
+    }
+  },
+
+
+
+methods: {
+
+  onFormSubmit(event) {
+    event.preventDefault();
+    this.data.uid_source = firebaseAuthentication.currentUser.email;
+    
+
+    console.log(this.data.uid_source);
+    firebaseFireStore.collection('data').add(this.data).then(() => {
+      
+      alert("Data added");
+
+      this.data.data_type = '';
+      this.data.title = '';
+      this.data.uid_source = '';
+      this.data.y_label = '';
+      this.data.x_label = '';
+      this.data.tags = '';
+      this.data.series[0] = {label: "", data: [{},{},{},{}]}
+      this.data.series[1] = {label: "", data: [{},{},{},{}]}
+
+
+    }).catch((error) => {
+      console.log(error);
+    });
+    },
+
+    add() {
+      this.data.push({
+        x_data: '',
+        y_data: ''
+      })
+    },
+
+
+  }
+}
+
+</script>
+
+<style scoped>
+
+
+
+button {   
+       background-color: #C1272D;  
+       align-content: center; 
+        color: white;  
+        cursor: pointer;   
+         }   
+
+ input[type=text]{   
+        width: 100%;   
+        margin: 8px 0;  
+        padding: 12px 20px;   
+        display: inline-block;     
+        box-sizing: border-box;   
+    }  
+ button:hover {   
+        opacity: 0.7;   
+    }   
+ 
+ .container {   
+        padding: 25px;  
+        font-size: 15px; 
+    }
+  
+.arrayInput{
+        display: inline-block;
+        color: #C1272D;
+}
+
+.addDataForm{
+  align-content: center;
+  margin: 5%;
+}
+
+.form-group{
+  margin-top:20px;
+}
+
+.series-input{
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+
+
+</style>
