@@ -26,7 +26,7 @@
           v-for="(fireData, index) in apexFirebaseMaster"
           :key="index"
         >
-          <el-col class="titleText" :span="20"
+          <el-col class="titleText" :offset=2 :span="20"
             >
               {{ fireData.extra.title }}
               <br>
@@ -39,7 +39,7 @@
             :series="fireData.series"
           ></apexchart>
           <el-col :span="24">
-            <p style="padding-top: 60px"><i>All Tags: </i>{{ fireData.extra.tags }}</p>
+            <p style="padding-top: 60px"><i>All Tags: </i>{{ fireData.extra.tags.substring(0,50) }}<span v-if="fireData.extra.tags.length >= 50">...</span></p>
           </el-col>
         </el-col>
       </el-row>
@@ -157,6 +157,7 @@ export default {
             };
 
             apexFirebaseMaster.push(apexDetails);
+            console.log(apexFirebaseMaster);
           }
           console.log(apexFirebaseMaster);
           return apexFirebaseMaster;

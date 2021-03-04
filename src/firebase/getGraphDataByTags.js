@@ -2,7 +2,7 @@ import {ref} from 'vue';
 import {firebaseFireStore} from '@/firebase/database';
 let data = ref([]);
 async function getDataByTag(searchTerm){
-    searchTerm = searchTerm.trim();
+    searchTerm = searchTerm.toLowerCase().trim();
     const db = firebaseFireStore;
     
     console.log("getGraphData file accessed", "SeachTerm: ", searchTerm);
@@ -13,7 +13,7 @@ async function getDataByTag(searchTerm){
             let dbChange = change.type;
             if(dbChange == "added"){
                 let docData = change.doc.data();
-                let docTags = docData.tags.split(",");
+                let docTags = docData.tags.toLowerCase().split(",");
                 let tagsTrue = docTags.includes(searchTerm);
                 // console.log(tagsTrue);
                 if(tagsTrue){

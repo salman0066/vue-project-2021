@@ -15,17 +15,21 @@
 
             <div>
               <p>Search for these ids</p>
-             (192600 for Cardiomyopathy, Familial Hypertrophic)
-             (618052 for Cardiomyopathy, Familial Hypertrophic 27)
-             (608758 for Cardiomyopathy, Familial Hypertrophic, 10)
-             (612098 for Cardiomyopathy, Familial Hypertrophic, 11)
-             (612124 for Cardiomyopathy, Familial Hypertrophic, 12)
-             (115210 for Cardiomyopathy, Familial Restrictive 1) 
-             (612422 for Cardiomyopathy, Familial Restrictive 2)
-             (612877 for Cardiomyopathy, Dilated,1bb)
-             (601493 for Cardiomyopathy, Dilated,1c)
-             (613122 for Cardiomyopathy, Dilated,1cc)
-             (601494 for Cardiomyopathy, Dilated,1d)
+              <ul>
+                <li>(192600 for Cardiomyopathy, Familial Hypertrophic)</li>
+                <li>(618052 for Cardiomyopathy, Familial Hypertrophic 27)</li>
+                <li>(608758 for Cardiomyopathy, Familial Hypertrophic, 10)</li>
+                <li>(612098 for Cardiomyopathy, Familial Hypertrophic, 11)</li>
+                <li>(612124 for Cardiomyopathy, Familial Hypertrophic, 12)</li>
+                <li>(115210 for Cardiomyopathy, Familial Restrictive 1) </li>
+                <li>(612422 for Cardiomyopathy, Familial Restrictive 2)</li>
+              </ul>
+              <ul>
+                <li>(612877 for Cardiomyopathy, Dilated,1bb)</li>
+                <li>(601493 for Cardiomyopathy, Dilated,1c)</li>
+                <li>(613122 for Cardiomyopathy, Dilated,1cc)</li>
+                <li>(601494 for Cardiomyopathy, Dilated,1d)</li>
+             </ul>
             </div>
           </el-form-item>
         </el-form>
@@ -101,3 +105,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+ul{
+  list-style-type: none;
+}
+</style>

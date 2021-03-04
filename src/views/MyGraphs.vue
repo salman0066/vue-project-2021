@@ -12,7 +12,7 @@
         </apexchart>
         <el-row style="margin:20px">
           <el-col :span=12>
-            <i>Tagged: </i>{{fireData.extra.tags}}
+            <p><i>All Tags: </i>{{ fireData.extra.tags.substring(0,50) }}<span v-if="fireData.extra.tags.length >= 50">...</span></p>
           </el-col>
           <el-col :span=12>
             <button @click="deleteMyGraph(fireData.extra.id)">Delete</button>
@@ -141,6 +141,7 @@ export default {
         alert("Record deleted");
         router.push('/');
       });
+
     }
 
     
