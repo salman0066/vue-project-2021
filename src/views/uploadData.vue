@@ -78,10 +78,10 @@
                     <label>Series {{series.num + 1}} X-axis data</label>
                     <el-col :span=24 v-for="(plot, index) in data.series[series.num].data" :key="index">
                       <el-col :span=12>
-                        <input type='text' class='form-control-sm' v-model.number='data.series[series.num].data[index].x' > 
+                        <input type='text' class='form-control-sm' v-model.number='data.series[series.num].data[index].x' required > 
                       </el-col>
                       <el-col :span=12>
-                        <input type='text' class='form-control-sm' v-model.number='data.series[series.num].data[index].y' > 
+                        <input type='text' class='form-control-sm' v-model.number='data.series[series.num].data[index].y' required > 
                       </el-col>
                     </el-col>
                   </el-col>
@@ -95,13 +95,33 @@
         </div>
 
         <div class="form-group">
-          <button class="btn btn-primary btn-block">Add Data</button>
+          <el-row>
+            <!-- <el-col style="background-color:blue" :span=8>
+              <el-col :span=12>
+                Data has been checked before submission<br>
+                I am aware that I cannot update data once submitted; I would have to delete existing data and re-upload.
+              </el-col>
+              <el-col :span=12>
+                <input v-model="agree" type='checkbox' name="agree" required>
+                <label for="agree">I agree</label>
+              </el-col>
+            </el-col> -->
+
+            <el-col :offset=6 :span=6>
+              <button class="btn btn-primary btn-block">Submit Graph Data</button>
+            </el-col>
+            <el-col :span=6>
+              <button class="btn btn-primary btn-block" @click="incrementSeries()">
+                Add another series
+              </button>
+            </el-col>
+          </el-row>
+          
+
+          
         </div>
       </div>
     </form>
-    <button class="btn btn-primary btn-block" @click="incrementSeries()">
-      Add another series
-    </button>
     <!-- end h1 title -->
   </div>
   <!-- end of form -->
@@ -155,12 +175,10 @@ export default {
       let seriesHTML = this.seriesHTML;
       seriesHTML.push({num: seriesHTML.length});
       this.data.series.push({label: "", data: [{}, {}, {}]})
-      console.log(this.data);
     },
 
     incrementSeriesCoordinates(seriesNum){
       this.data.series[seriesNum].data.push({});
-      console.log(this.data.series[seriesNum])
     },
 
     onFormSubmit(event) {
@@ -185,6 +203,8 @@ export default {
           this.data.y_label = "";
           this.data.x_label = "";
           this.data.tags = "";
+
+          console.log(this.data);
 
           document.documentElement.scrollTop = 0;
         })

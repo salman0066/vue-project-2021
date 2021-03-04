@@ -3,14 +3,13 @@
 
   <el-row>
     <el-col :offset="6" :span="12">
-      <el-form id="tagSearchForm" @submit.prevent="getPageData(tag)">
+      <el-form v-if="apexFirebaseMaster.length == 0" id="tagSearchForm" @submit.prevent="getPageData(tag)">
         <label for="tagSearch">Tag Search: </label>
         <select class="form-control" name="tagSearch" v-model="tag" required>
           <option>TNNT</option>
           <option>MYH</option>
           <option>MYBPC3</option>
           <option>TPM1</option>
-          <option>TMMT</option>
         </select>
         <input type='submit' value="Search"/>
       </el-form>
