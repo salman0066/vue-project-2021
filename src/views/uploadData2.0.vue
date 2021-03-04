@@ -15,84 +15,72 @@
 
             <div class="form-group">
                 <label>Chart Title</label>
-                <input type="text" class="form-control" v-model="data.title" placeholder="...overall title of the graph, will appear above it as a heading" required>
+                <input type="text" class="form-control" v-model="data.title" required>
             </div>
 
             <div class="form-group">
                 <label>Tags</label>
-                <input type="text" class="form-control" v-model="data.tags" placeholder="...ie: TNNT,GraphData,Research - tags separated by a comma, no spaces or hashtag ('#')" required>
+                <input type="text" class="form-control" v-model="data.tags" required>
             </div>
             <el-row>
               <el-col :span=12>
                 <label for="">X axis label</label>
-                <input type="text" class="form-control" name="" v-model="data.x_label" placeholder="...label for the bottom xaxis (horizontal)" required>
+                <input type="text" class="form-control" name="" v-model="data.x_label" required>
               </el-col>
               <el-col :span=12>
                 <label for="">Y axis label</label>
-                <input type="text" class="form-control" name="" v-model="data.y_label" placeholder="...label for the left yaxis (verticle)" required>
+                <input type="text" class="form-control" name="" v-model="data.y_label" required>
               </el-col>
             </el-row>
 
             <div class="container">
                 <div class="row form-group">
                   <el-row>
-                    <el-col :span="12" id="xaxis-input" class='col series-input' >
+                    <el-col :span="24" id="xaxis-input" class='col series-input' >
                       <el-row>
                         <el-col :span=24>
                           <label for="series1title">Series 1 title</label>
-                          <input type="text" name="series1title" class="form-control" v-model="data.series[0].label" placeholder="...subject of the first line data" required>
+                          <input type="text" name="series1title" class="form-control" v-model="data.series[0].label" required>
                         </el-col>
                       </el-row>
                       <el-row>
                         <el-col :span="12">
                           <label>Series 1 x data</label>
-                          <input type="text" class="form-control-sm" v-model="data.series[0].data[0].x" >
-                          <input type="text" class="form-control-sm" v-model="data.series[0].data[1].x" >
-                          <input type="text" class="form-control-sm" v-model="data.series[0].data[2].x" >
-                          <input type="text" class="form-control-sm" v-model="data.series[0].data[3].x" >
-                          <input type="text" class="form-control-sm" v-model="data.series[0].data[4].x" >
-                        </el-col>
-                        <el-col :span="12">
-                          <label>Series 1 y data</label>
-                          <input type="text" class="form-control-sm" v-model="data.series[0].data[0].y" >
-                          <input type="text" class="form-control-sm" v-model="data.series[0].data[1].y" >
-                          <input type="text" class="form-control-sm" v-model="data.series[0].data[2].y" >
-                          <input type="text" class="form-control-sm" v-model="data.series[0].data[3].y" >
-                          <input type="text" class="form-control-sm" v-model="data.series[0].data[4].y" >
-                        </el-col>
-                      </el-row>
-                    </el-col>
-                    <el-col :span="12" id="xaxis-input" class='col series-input' >
-                      <el-row>
-                        <el-col :span=24>
-                         <label for="series2title">Series 2 title</label>
-                        <input type="text" name="series2title" class="form-control" v-model="data.series[1].label" placeholder="...subject of the second line data">
-                        </el-col>
-                      </el-row>
-                      <el-row>
-                        <el-col :span="12">
-                          
-                          <label>Series 2 x data</label>
-                          <input type="text" class="form-control-sm" v-model="data.series[1].data[0].x" >
-                          <input type="text" class="form-control-sm" v-model="data.series[1].data[1].x" >
-                          <input type="text" class="form-control-sm" v-model="data.series[1].data[2].x" >
-                          <input type="text" class="form-control-sm" v-model="data.series[1].data[3].x" >
-                          <input type="text" class="form-control-sm" v-model="data.series[1].data[4].x" >
-                        </el-col>
-                        <el-col :span="12">
-                          <label for="y_data[1]">Series 2 y data</label>
-                          <input type="text" class="form-control-sm" v-model="data.series[1].data[0].y" >
-                          <input type="text" class="form-control-sm" v-model="data.series[1].data[1].y" >
-                          <input type="text" class="form-control-sm" v-model="data.series[1].data[2].y" >
-                          <input type="text" class="form-control-sm" v-model="data.series[1].data[3].y" >
-                          <input type="text" class="form-control-sm" v-model="data.series[1].data[4].y" >
+                          <input type="text" class="form-control-sm" v-model="series1Data" >
                         </el-col>
                       </el-row>
                     </el-col>
                   </el-row>
                   <!-- 
                   <button @click="xaxisAddField" class="btn btn-primary btn-block" style="float:right">add another axis field</button> -->
-                  
+                  <div class="series-input form-group">
+                    <el-row>
+                      <el-col :span=24>
+                        <label for="series2title">Series 2 title</label>
+                        <input type="text" name="series2title" class="form-control" v-model="data.series[1].label">
+                      </el-col>
+                      <el-col :span="12">
+                        <div id="yaxis-input-0" class='col form-group'>
+                          <label>Series 2 x data</label>
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[0].x" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[1].x" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[2].x" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[3].x" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[4].x" >
+                        </div>
+                      </el-col>
+                      <el-col :span="12">
+                        <div id="yaxis-input-1" class='col form-group'>
+                          <label>Series 2 y data</label>
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[0].y" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[1].y" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[2].y" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[3].y" >
+                          <input type="text" class="form-control-sm" v-model="data.series[1].data[4].y" >
+                        </div>
+                      </el-col>
+                    </el-row>
+                  </div> <!-- end of y axis section -->
                   
                 </div>
             </div>
@@ -104,6 +92,7 @@
         </form>
       <!-- end h1 title -->
     </div> <!-- end of form -->
+
     <div id="firebaseResult" hidden=true>
       <el-row style="background-color:blue">
         <el-col style="background-color: aqua" :offset="20" :span="4">
@@ -132,41 +121,40 @@ import { firebaseFireStore, firebaseAuthentication } from "@/firebase/database";
 export default {
   data() {
     return {
+      data: {
+        x_data: [],
+        series: [
+          {
+            label: "",
+            data: "[{x:12,y:21},{x:13,y:24},{x:32,y:25},{x:32,y:26},{x:32,y:28}]",
+          },
+          {
+            label: "",
+            data: [{},{},{},{},{}]
+          }
+        ]
+      },
 
-    data: {
-      x_data: [],
-      series: [
-        {
-          label: "",
-          data: [{},{},{},{},{}],
-        },
-        {
-          label: "",
-          data: [{},{},{},{},{}]
-        }
-      ]
-    }
+      series1Data: "[{x:12,y:21},{x:13,y:24},{x:32,y:25},{x:32,y:26},{x:32,y:28}]",
+      series2Data: ""
 
     // data: {
+
     // }
 
-
-  }
-},
+    }
+  },
 
 
 
 methods: {
 
-
   onFormSubmit(event) {
     event.preventDefault();
     this.data.uid_source = firebaseAuthentication.currentUser.email;
-    // alert(this.data.tags);
-    // this.data.tags += ",",this.data.data_type;
-    // alert(this.data.tags);
-    // this.data.tags.replace(/\s/g,"");
-    // alert(this.data.tags);
+    
+
+    console.log(this.data.uid_source);
     firebaseFireStore.collection('data').add(this.data).then(() => {
       
       alert("Data added");
@@ -174,12 +162,12 @@ methods: {
       this.data.data_type = '';
       this.data.title = '';
       this.data.uid_source = '';
-      this.data.series = [{label: "", data:[{},{},{},{},{},{}]},{label: "", data:[{},{},{},{},{},{}]}]
       this.data.y_label = '';
       this.data.x_label = '';
       this.data.tags = '';
+      this.data.series[0] = {label: "", data: [{},{},{},{}]}
+      this.data.series[1] = {label: "", data: [{},{},{},{}]}
 
-      document.documentElement.scrollTop = 0;
 
     }).catch((error) => {
       console.log(error);

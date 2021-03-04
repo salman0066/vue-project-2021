@@ -31,8 +31,7 @@
               {{ fireData.extra.title }}
               <br>
               {{ fireData.extra.data_type }}
-          </el-col
-          >
+          </el-col>
           <apexchart
             width="550"
             type="line"
@@ -40,7 +39,7 @@
             :series="fireData.series"
           ></apexchart>
           <el-col :span="24">
-            <p style="padding-top: 60px">{{ fireData.extra.tags }}</p>
+            <p style="padding-top: 60px"><i>All Tags: </i>{{ fireData.extra.tags }}</p>
           </el-col>
         </el-col>
       </el-row>
@@ -179,12 +178,15 @@ export default {
 <style scoped>
 .singleGraph {
   margin-bottom: 20px;
-  padding-bottom: 30px;
   border-bottom: 2px solid gainsboro;
 }
 
 .titleText {
   font-weight: bold;
+}
+
+#tagSearchForm{
+  padding-bottom:35px;
 }
 
 li {
