@@ -14,10 +14,8 @@
             required
             autocomplete="off"
             v-model="email"
-            
           ></el-input>
         </el-form-item>
-
 
         <!-- Password field -->
         <el-form-item label="Password: ">
@@ -46,8 +44,8 @@
 
         <el-form-item>
           <el-button type="primary" @click="login">Login</el-button>
-          <h2>
-                <router-link to="/forgot-password">Forgot password ?</router-link>
+            <h2>
+              <router-link to="/forgot-password">Forgot password ?</router-link>
             </h2>
         </el-form-item>
       </el-form>

@@ -1,17 +1,15 @@
 <template>
-    <div class="vue-tempalte">
-        <form @submit.prevent="forgetPassword">
-            <h2>Forgot your password? </h2>
-            <h3>Type your email address below and we will send you a verification email to reset your password!</h3>
-
-            <div class="form">
-                <label>Email:  </label>
-                <input type="email" class="form-control form-control-lg" v-model="user.email" />
-            </div>
-
-            <button type="submit">Reset password</button>
-        </form>
-    </div>
+	<div>
+		<form @submit.prevent="forgetPassword">
+			<h2>Forgot your password? </h2>
+			<h3>Type your email address below and we will send you a verification email to reset your password!</h3>
+			<div class="form">
+				<label>Email: </label>
+				<input type="email" class="form-control form-control-lg" v-model="user.email" />
+			</div>
+			<button type="submit">Reset password</button>
+		</form>
+	</div>
 </template>
 
 <script>
