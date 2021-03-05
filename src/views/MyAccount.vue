@@ -112,7 +112,7 @@ export default {
 			doc => {
 				// need to make sure the doc exists & has data
 				if (doc.data()) {
-					console.log(doc.data());
+					// console.log(doc.data());
 					userDetails.value = {
 						fullName: doc.data().fullName,
 						email: doc.data().email,
