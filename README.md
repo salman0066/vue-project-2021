@@ -5,14 +5,18 @@ However, if you have cloned this project from Github, all the installs below sho
 
 "npm install" & "npm run serve"
 
-installed modules: [
+installed modules and statements: [
     npm install
     npm install --save vue-stripe-elements-plus
     npm install --save element-plus
     npm install --save vue-element-plus
     npm install --save apexcharts
     npm install --save vue3-apexcharts
+    npm install --save firebase
+    npm install --save unit-jest
 ]
+
+(you can run "npm install --save vue-stripe-elements-plus element-plus vue-element-plus apexcharts vue3-apexcharts firebase unit-jest" but this makes it one install transaction that will all fail if one fails)
 
 In this project you will find a Wireframe (Wireframe.drawio) documenting the preliminary visual goal of the site's pages and interconnectivity.
 To open this wireframe, head to Draw.io (https://app.diagrams.net/?libs=general;uml) and on the main screen select "File -> Open From -> Device" which will open your pc file explorer for you to select "Wireframe.drawio" to open it in the browser.
