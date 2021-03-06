@@ -18,7 +18,9 @@
             <router-link style="float:right" :to="{ name: 'MyGraphs'}">My Graphs</router-link> 
             <router-link style="float:right" :to="{ name: 'MyAccount'}">My Account|</router-link>  -->
          <div class="dropdown">
-            <button class="dropbtn">
+           <i icon="el-icon-user"> </i>
+            <button class="dropbtn" icon="el-icon-user" >
+            <i icon="el-icon-user"> </i>
             <i class="fa fa-user"></i>
             Logged in ({{ user }})
             <i class="fa fa-caret-down"></i>

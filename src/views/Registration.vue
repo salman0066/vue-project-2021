@@ -163,6 +163,10 @@ export default {
          // .then(
          //   () => {
               router.replace("my_account");
+              // // now we have access to the signed in user
+              // const user = firebaseAuthentication().currentUser;
+              // // send the signed in user a verification email
+              // user.sendEmailVerification();
          //   },
             // (userCredentials) => {
             //   return userCredentials.user
