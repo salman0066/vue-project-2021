@@ -4,7 +4,7 @@
    </div>
    <div id="nav">
       <router-link style="float:left" v-bind:to="{ name: 'Home' }">Home</router-link>
-      <router-link style="float:left" :to="{ name: 'About'}">About Us</router-link>
+      <router-link style="float:left" :to="{ name: 'About'}">Help</router-link>
       <router-link style="float:left" :to="{ name: 'Search'}">Search</router-link>
       <router-link style="float:left" :to="{ name: 'GraphData'}">Data</router-link>
       <router-link style="float:left" :to="{ name: 'DataByTags'}">By Tags</router-link>  
