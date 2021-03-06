@@ -5,7 +5,7 @@ async function getDataByTag(searchTerm){
     searchTerm = searchTerm.toLowerCase().trim();
     const db = firebaseFireStore;
     
-    console.log("getGraphData file accessed", "SeachTerm: ", searchTerm);
+    // console.log("getGraphData file accessed", "SeachTerm: ", searchTerm);
     
     await db.collection('data')/*.where("tags", "==", searchTerm)*/.get().then((snapshot)=>{
         let snapData = [];

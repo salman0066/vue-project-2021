@@ -74,7 +74,6 @@ export default {
 
           apexChartOptions = {
             chart: {
-             
               id: firebaseRecord.title,
               dropShadow: {
                       enabled: true,

@@ -5,7 +5,7 @@ async function getData(){
 
     const db = firebaseFireStore;
     
-    console.log("getGraphData file accessed");
+    // console.log("getGraphData file accessed");
     
     await db.collection('data').orderBy('title').get().then((snapshot)=>{
         let snapData = [];
