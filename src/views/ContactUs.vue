@@ -2,7 +2,7 @@
 	<div>
 		<h1>Contact Us</h1>
 		<el-row>
-			<el-col :offset="10" :span="12">
+			<el-col :offset="11" :span="12">
 				<table>
 					<tr>
 						<td>Bilaal</td>
