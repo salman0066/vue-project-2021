@@ -82,7 +82,7 @@ export default {
     function getPageData(tag) {
       getDataByTag(tag)
         .then((result)=>{
-          console.log(apexFirebaseMaster);
+          // console.log(apexFirebaseMaster);
           // if(apexFirebaseMaster.length != 0) apexFirebaseMaster = [];
           return result;
         })
@@ -91,7 +91,6 @@ export default {
         })
         .then(() => {
           /**sort "data" from firebase into presentable data for the apex charts */
-          console.log(apexFirebaseMaster, apexChartOptions, apexChartSeries);
           for (let i = 0; i < firebaseArray.length; i++) {
             firebaseRecord = firebaseArray[i];
             firebaseRecord.downloadable = false;
@@ -156,9 +155,9 @@ export default {
             };
 
             apexFirebaseMaster.push(apexDetails);
-            console.log(apexFirebaseMaster);
+            // console.log(apexFirebaseMaster);
           }
-          console.log(apexFirebaseMaster);
+          // console.log(apexFirebaseMaster);
           return apexFirebaseMaster;
           // console.log(apexFirebaseMaster.length, apexFirebaseMaster);
         });
