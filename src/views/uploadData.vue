@@ -1,6 +1,7 @@
 <template>
   <div class="addData">
     <h1>Add Data</h1>
+
     <form @submit.prevent="onFormSubmit">
       <div class="addDataForm">
         <div class="form-group">
@@ -147,10 +148,13 @@
 <script>
 //import {ref} from "vue";
 import { firebaseFireStore, firebaseAuthentication } from "@/firebase/database";
+import {useRouter} from 'vue-router';
+
 
 export default {
   data() {
     return {
+      router: useRouter(),
       seriesHTML: [
         {
           num: 0,
@@ -163,10 +167,9 @@ export default {
             data: [{}, {}, {}],
           }
         ],
-      },
+      }
 
-//       data: {
-      // }
+      
     };
   },
 
@@ -184,22 +187,22 @@ export default {
     onFormSubmit(event) {
       event.preventDefault();
       this.data.uid_source = firebaseAuthentication.currentUser.email;
-      this.data.tags += "," + this.data.data_type; /**PUSH THE data_type/gene_type onto the list of tags */
+      this.data.tags += "," + this.data.data_type; /**PUSH the data_type/gene_type onto the list of tags */
       if(this.data.series.length == 1) this.data.series.push({label:"", data:[]}); /**error control - apexcharts likes 2 series and can omit one if it's empty, but not omit one if it doesnt exist */
+
       firebaseFireStore
         .collection("data")
         .add(this.data)
         .then(() => {
           alert("Data added");
-
-          this.seriesHTML = [{num: 1}];
+          this.seriesHTMl = [];
+          this.seriesHTML[0] = [{num: 0}];
 
           this.data.data_type = "";
           this.data.title = "";
           this.data.uid_source = "";
-          this.data.series = [
-            {label:"", data:[]}
-          ];
+          this.data.series = [];
+          this.data.series[0] = {label:"test", data:[{x:1,y:2}]};
           this.data.y_label = "";
           this.data.x_label = "";
           this.data.tags = "";
@@ -207,6 +210,7 @@ export default {
           console.log(this.data);
 
           document.documentElement.scrollTop = 0;
+          this.router.push('/data');
         })
         .catch((error) => {
           console.log(error);

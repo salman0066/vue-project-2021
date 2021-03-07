@@ -68,7 +68,7 @@ export default {
 
         for(let i = 0; i<firebaseArray.length; i++){
           firebaseRecord = firebaseArray[i];
-          firebaseRecord.downloadable = true;
+          firebaseRecord.downloadable = true; //displays the toolbar for the graphs
           // console.log(firebaseRecord);
           // console.log(firebaseRecord.downloadable);
 
